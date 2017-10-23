@@ -1,6 +1,7 @@
 package Exercise1;
 
 import pmp.filter.AbstractFilter;
+import pmp.filter.DataTransformationFilter1;
 import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
@@ -11,7 +12,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class SortListFilter extends AbstractFilter <String, String> {
+public class SortListFilter extends DataTransformationFilter1<String> {
 
     public SortListFilter(Writeable output) throws InvalidParameterException {
         super(output);
@@ -24,6 +25,11 @@ public class SortListFilter extends AbstractFilter <String, String> {
 
     @Override
     public void write(String value) throws IOException {
+
+    }
+
+    @Override
+    protected void process(String entity) {
 
     }
 }

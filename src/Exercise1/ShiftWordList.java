@@ -1,6 +1,7 @@
 package Exercise1;
 
 import pmp.filter.AbstractFilter;
+import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class ShiftWordList extends AbstractFilter<ArrayList<String>, String> {
+public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, String> {
 
     public ShiftWordList(Writeable output) throws InvalidParameterException {
         super(output);
@@ -26,5 +27,10 @@ public class ShiftWordList extends AbstractFilter<ArrayList<String>, String> {
     @Override
     public void write(ArrayList<String> value) throws IOException {
 
+    }
+
+    @Override
+    protected String process(ArrayList<String> entity) {
+        return null;
     }
 }
