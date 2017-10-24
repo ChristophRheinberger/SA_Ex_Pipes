@@ -1,9 +1,9 @@
 package pmp.filter;
 
 import pmp.interfaces.Readable;
-import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 
@@ -15,7 +15,7 @@ import java.security.InvalidParameterException;
  *                                      a default version is supplied which does nothing (a dark sink, for testing purposes) 
  * contract: a null input signals end-of-stream
  */
-public class Sink<T> implements Writeable<T>, Runnable{
+public abstract class Sink<T> extends AbstractFilter<T,T> {
 	
     protected Readable<T> m_Input = null;
     
@@ -37,7 +37,7 @@ public class Sink<T> implements Writeable<T>, Runnable{
  * push next value into sink
  * @see interfaces.Writeable#write(java.lang.Object)
  */
-	public void write(T value) throws StreamCorruptedException {
+	public void write(T value) throws IOException {
 		//noop
 	}
 	
@@ -71,6 +71,8 @@ public class Sink<T> implements Writeable<T>, Runnable{
             // TODO Automatisch erstellter Catch-Block
             e.printStackTrace();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -47,7 +47,10 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         m_Input = input;
         m_Output = output;
     }
-    
+
+    protected AbstractFilter() {
+    }
+
     protected void writeOutput(out value) throws IOException {
         if (m_Output != null){
            m_Output.write(value);

@@ -1,10 +1,9 @@
 package Exercise1;
 
-import pmp.interfaces.Readable;
-import pmp.interfaces.Writeable;
+import pmp.filter.Sink;
 
 import java.io.*;
-import java.security.InvalidParameterException;
+import java.util.ArrayList;
 
 /*
  * a simple sink: takes passively objects or pulls actively objects without doing anything with the stream objects
@@ -14,72 +13,26 @@ import java.security.InvalidParameterException;
  *                                      a default version is supplied which does nothing (a dark sink, for testing purposes)
  * contract: a null input signals end-of-stream
  */
-public class FileSaveSink<T> implements Writeable<T>, Runnable{
+public class FileSaveSink extends Sink<ArrayList<String>> {
 
-    protected Readable<T> m_Input = null;
-
-    public static Object ENDING_SIGNAL = null;
-
-
-    public FileSaveSink(Readable<T> input) throws InvalidParameterException{
-        if (input == null){
-            throw new InvalidParameterException("input filter can't be null!");
-        }
-        m_Input = input;
+    @Override
+    public ArrayList<String> read() throws StreamCorruptedException, FileNotFoundException {
+        return null;
     }
 
-    public FileSaveSink()  {
-
-    }
-
-    /*
-     * push next value into sink
-     * @see interfaces.Writeable#write(java.lang.Object)
-     */
-    public void write(T value) throws IOException {
-
+    @Override
+    public void write(ArrayList<String> value) throws IOException {
         File file = new File("BookIndex.txt");
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
 
-        bw.write(value.toString());
-    }
+        String indexString = null;
 
-    /*
-     * epilogue is a cleanup method at the end of the stream in case of an active sink
-     */
-    public void epilogue()  {
-        //noop
-    }
-
-    /*
-     * for active sinks
-     * @see java.lang.Runnable#run()
-     */
-    public void run() {
-        T input = null;
-        try {
-            do {
-                if (m_Input == null)
-                    throw new StreamCorruptedException("input filter is null");
-
-                input = m_Input.read();
-
-                if (input != null)
-                    write(input);
-
-            } while(input != null);
-            epilogue();
-
-        } catch (StreamCorruptedException e) {
-            // TODO Automatisch erstellter Catch-Block
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (String s : value) {
+            indexString = indexString.concat(s);
+            indexString.concat(System.lineSeparator());
         }
+
+        bw.write(indexString);
     }
-
-
 }

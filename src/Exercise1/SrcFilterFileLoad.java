@@ -31,7 +31,7 @@ public class SrcFilterFileLoad extends Source<String> {
         try {
             while(!bre.readLine().isEmpty()) {
                 String line = "";
-                m_Output.write(bre.readLine());
+                return bre.readLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

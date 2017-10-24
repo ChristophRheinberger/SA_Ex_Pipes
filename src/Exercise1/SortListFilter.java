@@ -1,6 +1,6 @@
 package Exercise1;
 
-import pmp.filter.DataTransformationFilter1;
+import pmp.filter.ForwardingFilter;
 import pmp.interfaces.Writeable;
 
 import java.security.InvalidParameterException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class SortListFilter extends DataTransformationFilter1<ArrayList<String>> {
+public class SortListFilter extends ForwardingFilter<ArrayList<String>> {
 
     protected ArrayList<String> sortedIndex = new ArrayList<>();
 
@@ -18,10 +18,11 @@ public class SortListFilter extends DataTransformationFilter1<ArrayList<String>>
     }
 
     @Override
-    protected void process(ArrayList<String> entity) {
-
+    protected boolean forward(ArrayList<String> entity) {
         boolean inserted = false;
         int i = 0;
+
+        System.out.println(entity.toString());
 
         for(int j = 0; j < entity.size(); j++) {
             do {
@@ -33,5 +34,7 @@ public class SortListFilter extends DataTransformationFilter1<ArrayList<String>>
             } while (inserted != true);
             i = 0;
         }
+
+        return false;
     }
 }
