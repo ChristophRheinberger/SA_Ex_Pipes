@@ -28,7 +28,7 @@ public class main {
 
         SrcFilterFileLoad srcFilterFileLoad = new SrcFilterFileLoad(pipeLineString);
 
-
+        srcFilterFileLoad.run();
 
     }
 }

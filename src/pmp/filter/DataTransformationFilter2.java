@@ -58,7 +58,7 @@ public abstract class DataTransformationFilter2<T,S> extends AbstractFilter<T,S>
      * does the transformation on entity
      * @param entity
      */
-    protected abstract S process(T entity);
+    protected abstract S process(T entity) throws FileNotFoundException, StreamCorruptedException;
 
     
 
