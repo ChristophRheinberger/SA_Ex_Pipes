@@ -20,7 +20,7 @@ public class CreateWordList extends DataTransformationFilter2<String, ArrayList<
 
     @Override
     protected ArrayList<String> process(String entity) throws FileNotFoundException, StreamCorruptedException {
-        String input = readInput();
+        String input = entity;
 
         String[] inputArray = input.split(" ");
         ArrayList<String> inputList = new ArrayList<>();

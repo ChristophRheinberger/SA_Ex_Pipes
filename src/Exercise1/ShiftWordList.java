@@ -1,36 +1,57 @@
 package Exercise1;
 
-import pmp.filter.AbstractFilter;
 import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, String> {
+public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, ArrayList<String>> {
+
+    protected List<String> _ignoredWords = Arrays.asList("the", "of", "and", "to", "a", "in", "is", "you", "are", "for", "that", "or", "it",
+                                                                "as", "be", "on", "your", "with", "can", "have", "this", "an", "by", "not", "but", "at", "from",
+                                                                "I", "they", "more", "will", "if", "some", "there", "what", "about", "which", "when", "one", "their",
+                                                                "all", "also", "how", "many", "do", "has", "most", "other", "so", "was", "we", "these", "like", "use",
+                                                                "into", "than", "up", "out", "who", "them", "make", "because", "such", "through", "get", "work", "even",
+                                                                "different", "its", "no", "our", "new", "just", "only", "see", "used", "good", "been", "need", "should",
+                                                                "very", "any", "often", "well", "were", "then", "my", "would", "over", "where", "much", "while", "he", "look");
+
 
     public ShiftWordList(Writeable output) throws InvalidParameterException {
         super(output);
     }
 
     @Override
-    public String read() throws StreamCorruptedException, FileNotFoundException {
-        return null;
-    }
+    protected ArrayList<String> process(ArrayList<String> entity) throws FileNotFoundException, StreamCorruptedException {
 
-    @Override
-    public void write(ArrayList<String> value) throws IOException {
+        ArrayList<String> inputList = entity;
+        ArrayList<String> outputList = new ArrayList<>();
+        String arrayElement;
 
-    }
+        if (inputList.size() == 0) {
+            return inputList;
+        }
 
-    @Override
-    protected String process(ArrayList<String> entity) {
-        return null;
+        String element = null;
+
+        for (int i = 1; i <= inputList.size()-1; i++) {
+            element = inputList.remove(inputList.size()-i);
+            inputList.add(0, element);
+
+            if (!_ignoredWords.contains(inputList.get(0).toLowerCase())) {
+                arrayElement = String.join(" ", inputList);
+
+                outputList.add(arrayElement);
+            }
+        }
+
+        return outputList;
     }
 }

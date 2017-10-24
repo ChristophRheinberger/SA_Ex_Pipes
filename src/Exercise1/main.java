@@ -12,11 +12,11 @@ public class main {
 
         FileSaveSink fileSaveSink = new FileSaveSink();
 
-        SimplePipe<String> filePipe = new SimplePipe<>(fileSaveSink);
+        SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>(fileSaveSink);
 
         SortListFilter sortListFilter = new SortListFilter(filePipe);
 
-        SimplePipe<String> pipeSortList = new SimplePipe<> (null, sortListFilter);
+        SimplePipe<ArrayList<String>> pipeSortList = new SimplePipe<>(null, sortListFilter);
 
         ShiftWordList shiftWordList = new ShiftWordList(pipeSortList);
 
