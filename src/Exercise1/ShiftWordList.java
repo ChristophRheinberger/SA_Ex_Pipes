@@ -43,10 +43,8 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
 
         for (int i = 1; i <= inputList.size()-1; i++) {
 
-            arrayElement = String.join(" ", inputList);
-            arrayElement = arrayElement.replaceAll("[-+.^:,]","");
-
             if (!_ignoredWords.contains(inputList.get(0).toLowerCase())) {
+                arrayElement = String.join(" ", inputList);
                 outputList.add(arrayElement);
             }
 

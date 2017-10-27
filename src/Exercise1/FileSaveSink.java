@@ -23,7 +23,7 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
 
     private BufferedWriter getBw() throws IOException {
         if(bw == null){
-            bw = new BufferedWriter(new FileWriter("D:\\Schule\\FHV\\Semester5\\SA\\SA_Ex_1\\BookIndex.txt"));
+            bw = new BufferedWriter(new FileWriter("BookIndex.txt"));
         }
         return bw;
     }
@@ -41,7 +41,6 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
                 if (value.get(i) != null) {
                     indexString = indexString.concat(value.get(i));
                     indexString.concat(System.lineSeparator());
-                    System.out.println(indexString);
                     bw.write(value.get(i));
                     bw.newLine();
                 }

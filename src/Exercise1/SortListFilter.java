@@ -28,24 +28,6 @@ public class SortListFilter extends DataCompositionFilter<ArrayList<String>, Arr
                 do {
                     entity.add(nextVal.get(j));
                     inserted = true;
-                    /*
-                    if (entity.isEmpty()) {
-                        entity.add(nextVal.get(j));
-                        inserted = true;
-                    } else if (nextVal.get(j).compareTo(entity.get(0)) < 0) {
-                        entity.add(0, nextVal.get(j));
-                        inserted = true;
-                    } else if (nextVal.get(j).compareTo(entity.get(i)) > 0) {
-                        if (entity.size() < i) {
-                            entity.add(nextVal.get(j));
-                        } else {
-                            entity.add(i, nextVal.get(j));
-                        }
-                        inserted = true;
-                    } else {
-                        i++;
-                    }
-                    */
                 } while (inserted != true);
                 i = 0;
                 inserted = false;

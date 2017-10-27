@@ -31,7 +31,11 @@ public class SrcFilterFileLoad extends Source<String>{
         BufferedReader buffReader = getBr();
         try {
             while((line = buffReader.readLine()) != null) {
-                return line;
+                if (line != "") {
+                    line = line.replaceAll("[-+.^:,;*\"_]", "");
+                    line = line.replaceAll("\\s\\s", "");
+                    return line;
+                }
             }
             return null;
         } catch (IOException e) {
