@@ -29,8 +29,11 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
         String indexString = null;
 
         for (String s : value) {
-            indexString = indexString.concat(s);
-            indexString.concat(System.lineSeparator());
+            if(s != null){
+                indexString = indexString.concat(s);
+                indexString.concat(System.lineSeparator());
+            }
+
         }
 
         bw.write(indexString);

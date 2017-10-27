@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Christoph on 23.10.2017.
@@ -23,16 +24,15 @@ public class CreateWordList extends DataTransformationFilter2<String, ArrayList<
         String input = entity;
 
         String[] inputArray = input.split(" ");
-        ArrayList<String> inputList = new ArrayList<>();
+        ArrayList<String> inputList = new ArrayList();
 
-        for ( String s : inputList ) {
+        for ( String s : inputArray ) {
             inputList.add(s);
         }
 
         inputList.add(String.valueOf(line));
 
         line++;
-
         return inputList;
     }
 }

@@ -51,7 +51,7 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
                 outputList.add(arrayElement);
             }
         }
-
+        //System.out.println(outputList.toString());
         return outputList;
     }
 }

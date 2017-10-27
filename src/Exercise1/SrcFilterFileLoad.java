@@ -7,36 +7,37 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
 
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class SrcFilterFileLoad extends Source<String> {
+public class SrcFilterFileLoad extends Source<String>{
+    public BufferedReader br = null;
+
     public SrcFilterFileLoad(Writeable<String> output) {
         super(output);
     }
 
-    @Override
-    public String read() {
-
-        FileReader fre = null;
-        try {
-            fre = new FileReader("aliceInWonderland.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    private BufferedReader getBr() throws FileNotFoundException {
+        if(br == null){
+            br = new BufferedReader(new FileReader("aliceInWonderland.txt"));
         }
-        BufferedReader bre = new BufferedReader(fre);
+        return br;
+    }
 
-
+    @Override
+    public String read() throws FileNotFoundException {
+        String line = null;
+        BufferedReader buffReader = getBr();
         try {
-            while(!bre.readLine().isEmpty()) {
-                String line = "";
-                return bre.readLine();
+            while((line = buffReader.readLine()) != null) {
+                System.out.println(line);
+                return line;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
