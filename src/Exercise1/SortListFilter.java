@@ -21,6 +21,9 @@ public class SortListFilter extends ForwardingFilter<ArrayList<String>> {
     protected boolean forward(ArrayList<String> entity) {
         boolean inserted = false;
         int i = 0;
+
+        System.out.println(entity.toString());
+
         for(int j = 0; j < entity.size(); j++) {
             do {
                 if (entity.get(j).compareTo(sortedIndex.get(i)) > 0) {

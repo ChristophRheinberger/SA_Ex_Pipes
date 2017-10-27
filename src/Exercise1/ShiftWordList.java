@@ -42,8 +42,8 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
         String element = null;
 
         for (int i = 1; i <= inputList.size()-1; i++) {
-            element = inputList.remove(inputList.size()-i);
-            inputList.add(0, element);
+            element = inputList.remove(0);
+            inputList.add(inputList.size()-i, element);
 
             if (!_ignoredWords.contains(inputList.get(0).toLowerCase())) {
                 arrayElement = String.join(" ", inputList);
@@ -51,7 +51,7 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
                 outputList.add(arrayElement);
             }
         }
-        //System.out.println(outputList.toString());
+        System.out.println(outputList.toString());
         return outputList;
     }
 }
