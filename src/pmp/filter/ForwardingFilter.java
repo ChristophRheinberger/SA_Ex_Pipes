@@ -51,8 +51,9 @@ public abstract class ForwardingFilter<T> extends AbstractFilter <T,T> {
     		beforeSendingEndingSignal();
     		writeOutput(value);
     	}
-    	else if ( forward(value) )
+    	else if ( forward(value) ) {
             writeOutput(value);
+        }
     }
     
 

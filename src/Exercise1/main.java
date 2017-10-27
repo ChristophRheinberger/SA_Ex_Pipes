@@ -17,7 +17,7 @@ public class main {
 
         SortListFilter sortListFilter = new SortListFilter(filePipe);
 
-        SimplePipe<ArrayList<String>> pipeSortList = new SimplePipe<>((Writeable<ArrayList<String>>) sortListFilter);
+        SimplePipe<ArrayList<String>> pipeSortList = new SimplePipe<>((Writeable) sortListFilter);
 
         ShiftWordList shiftWordList = new ShiftWordList(pipeSortList);
 

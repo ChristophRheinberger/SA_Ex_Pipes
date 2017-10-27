@@ -21,7 +21,7 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
                                                                 "all", "also", "how", "many", "do", "has", "most", "other", "so", "was", "we", "these", "like", "use",
                                                                 "into", "than", "up", "out", "who", "them", "make", "because", "such", "through", "get", "work", "even",
                                                                 "different", "its", "no", "our", "new", "just", "only", "see", "used", "good", "been", "need", "should",
-                                                                "very", "any", "often", "well", "were", "then", "my", "would", "over", "where", "much", "while", "he", "look");
+                                                                "very", "any", "often", "well", "were", "then", "my", "would", "over", "where", "much", "while", "he", "look", "*", " ");
 
 
     public ShiftWordList(Writeable output) throws InvalidParameterException {
@@ -42,16 +42,14 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
         String element = null;
 
         for (int i = 1; i <= inputList.size()-1; i++) {
-            element = inputList.remove(0);
-            inputList.add(inputList.size()-i, element);
-
             if (!_ignoredWords.contains(inputList.get(0).toLowerCase())) {
                 arrayElement = String.join(" ", inputList);
-
                 outputList.add(arrayElement);
             }
+
+            element = inputList.remove(0);
+            inputList.add(inputList.size()-1, element);
         }
-        System.out.println(outputList.toString());
         return outputList;
     }
 }

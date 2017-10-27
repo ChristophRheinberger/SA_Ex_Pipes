@@ -26,16 +26,19 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         BufferedWriter bw = new BufferedWriter(fw);
 
-        String indexString = null;
+        String indexString = new String();
 
-        for (String s : value) {
-            if(s != null){
-                indexString = indexString.concat(s);
-                indexString.concat(System.lineSeparator());
+        System.out.println(value.toString());
+
+        if (value != null) {
+            for (int i = 0; i < value.size(); i++) {
+                if (value.get(i) != null) {
+                    indexString = indexString.concat(value.get(i));
+                    indexString.concat(System.lineSeparator());
+                }
             }
-
+        } else {
+            bw.write(indexString);
         }
-
-        bw.write(indexString);
     }
 }

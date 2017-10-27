@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.Buffer;
 
 /**
  * Created by Christoph on 23.10.2017.
@@ -32,9 +31,9 @@ public class SrcFilterFileLoad extends Source<String>{
         BufferedReader buffReader = getBr();
         try {
             while((line = buffReader.readLine()) != null) {
-                System.out.println(line);
                 return line;
             }
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
         }
