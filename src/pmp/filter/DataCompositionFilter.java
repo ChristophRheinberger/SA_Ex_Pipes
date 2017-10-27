@@ -22,7 +22,7 @@ import java.security.InvalidParameterException;
 
 public abstract class DataCompositionFilter<in, out>  extends AbstractFilter<in, out> implements Runnable {
 
-	private out m_TempWriteEntity = null;
+	protected out m_TempWriteEntity = null;
     protected boolean m_EndOfStream = false;
 
 
@@ -72,8 +72,10 @@ public abstract class DataCompositionFilter<in, out>  extends AbstractFilter<in,
           }else {
         	  if (m_TempWriteEntity != null)
         		  fillEntity(value, m_TempWriteEntity);    //signal with value==null that entity might have to be flushed 
-              if (m_TempWriteEntity != null)             	  
-            	  writeOutput(m_TempWriteEntity);
+              if (m_TempWriteEntity != null) {
+                  beforeSendingData();
+                  writeOutput(m_TempWriteEntity);
+              }
               
               beforeSendingEndingSignal();
               writeOutput(null);
@@ -122,4 +124,6 @@ public abstract class DataCompositionFilter<in, out>  extends AbstractFilter<in,
      * @return
      */
     protected abstract out getNewEntityObject();
+
+    protected abstract void beforeSendingData();
 }

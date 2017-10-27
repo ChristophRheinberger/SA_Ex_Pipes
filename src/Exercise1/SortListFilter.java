@@ -5,6 +5,8 @@ import pmp.interfaces.Writeable;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Christoph on 23.10.2017.
@@ -24,6 +26,9 @@ public class SortListFilter extends DataCompositionFilter<ArrayList<String>, Arr
         if (nextVal != null) {
             for (int j = 0; j < nextVal.size(); j++) {
                 do {
+                    entity.add(nextVal.get(j));
+                    inserted = true;
+                    /*
                     if (entity.isEmpty()) {
                         entity.add(nextVal.get(j));
                         inserted = true;
@@ -40,19 +45,29 @@ public class SortListFilter extends DataCompositionFilter<ArrayList<String>, Arr
                     } else {
                         i++;
                     }
+                    */
                 } while (inserted != true);
                 i = 0;
                 inserted = false;
             }
-            return false;
-        } else {
-            return true;
         }
+        return false;
+
 
     }
 
     @Override
     protected ArrayList<String> getNewEntityObject() {
         return new ArrayList<String>();
+    }
+
+    @Override
+    protected void beforeSendingData() {
+        Collections.sort(m_TempWriteEntity, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
     }
 }

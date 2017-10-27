@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, ArrayList<String>> {
 
-    protected List<String> _ignoredWords = Arrays.asList("the", "of", "and", "to", "a", "in", "is", "you", "are", "for", "that", "or", "it",
+    protected List<String> _ignoredWords = Arrays.asList("the", "of", "and", "to", "a", "in", "is", "you", "are", "for", "that", "or", "it", "her", "his",
                                                                 "as", "be", "on", "your", "with", "can", "have", "this", "an", "by", "not", "but", "at", "from",
                                                                 "I", "they", "more", "will", "if", "some", "there", "what", "about", "which", "when", "one", "their",
                                                                 "all", "also", "how", "many", "do", "has", "most", "other", "so", "was", "we", "these", "like", "use",
@@ -42,14 +42,18 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
         String element = null;
 
         for (int i = 1; i <= inputList.size()-1; i++) {
+
+            arrayElement = String.join(" ", inputList);
+            arrayElement = arrayElement.replaceAll("[-+.^:,]","");
+
             if (!_ignoredWords.contains(inputList.get(0).toLowerCase())) {
-                arrayElement = String.join(" ", inputList);
                 outputList.add(arrayElement);
             }
 
             element = inputList.remove(0);
             inputList.add(inputList.size()-1, element);
         }
+
         return outputList;
     }
 }
