@@ -1,4 +1,4 @@
-package Exercise1;
+package ExerciseA;
 
 import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Christoph on 23.10.2017.

@@ -1,4 +1,4 @@
-package Exercise1;
+package ExerciseA;
 
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;

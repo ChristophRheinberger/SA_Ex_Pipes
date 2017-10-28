@@ -1,4 +1,4 @@
-package Exercise1;
+package ExerciseA;
 
 import pmp.filter.DataCompositionFilter;
 import pmp.interfaces.Writeable;
