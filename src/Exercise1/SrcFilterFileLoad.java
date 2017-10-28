@@ -20,7 +20,7 @@ public class SrcFilterFileLoad extends Source<String>{
 
     private BufferedReader getBr() throws FileNotFoundException {
         if(br == null){
-            br = new BufferedReader(new FileReader("aliceInWonderland-Kopie.txt"));
+            br = new BufferedReader(new FileReader("aliceInWonderland.txt"));
         }
         return br;
     }
@@ -31,12 +31,6 @@ public class SrcFilterFileLoad extends Source<String>{
         BufferedReader buffReader = getBr();
         try {
             while((line = buffReader.readLine()) != null) {
-                while(line.isEmpty() || line.trim().equals("") || line.trim().equals(System.lineSeparator())){
-                    line = buffReader.readLine();
-                }
-                line = line.replaceAll("[-+.$%&!·?/^:,;*\"_\\[\\]\\(\\)\\d#]", " ");
-                line = line.replaceAll("\\s\\s", "");
-                line = line.trim();
                 return line;
             }
             return null;

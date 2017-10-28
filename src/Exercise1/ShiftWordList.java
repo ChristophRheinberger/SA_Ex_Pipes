@@ -21,8 +21,7 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
                                                                 "all", "also", "how", "many", "do", "has", "most", "other", "so", "was", "we", "these", "like", "use",
                                                                 "into", "than", "up", "out", "who", "them", "make", "because", "such", "through", "get", "work", "even",
                                                                 "different", "its", "no", "our", "new", "just", "only", "see", "used", "good", "been", "need", "should",
-                                                                "very", "any", "often", "well", "were", "then", "my", "would", "over", "where", "much", "while", "he", "look", "*", "," +
-                                                                "'", "Illustration");
+                                                                "very", "any", "often", "well", "were", "then", "my", "would", "over", "where", "much", "while", "he", "look", "*");
 
 
     public ShiftWordList(Writeable output) throws InvalidParameterException {

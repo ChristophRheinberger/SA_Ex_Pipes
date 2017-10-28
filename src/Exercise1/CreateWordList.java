@@ -23,16 +23,23 @@ public class CreateWordList extends DataTransformationFilter2<String, ArrayList<
     protected ArrayList<String> process(String entity) throws FileNotFoundException, StreamCorruptedException {
         String input = entity;
 
+        input = input.replaceAll("[\\W\\d_]+", " ");
+        input = input.replaceAll("\\s\\s", "");
+        input = input.trim();
+
         String[] inputArray = input.split(" ");
         ArrayList<String> inputList = new ArrayList();
 
-        for ( String s : inputArray ) {
-            inputList.add(s);
+        for (String s : inputArray) {
+            if(!input.isEmpty() || !input.equals("")){
+                inputList.add(s);
+            }
         }
 
         inputList.add(String.valueOf(line));
 
         line++;
         return inputList;
+
     }
 }
