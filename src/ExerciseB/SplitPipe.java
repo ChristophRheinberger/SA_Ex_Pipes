@@ -58,7 +58,7 @@ public class SplitPipe<T> implements IOable<T, T> {
             throw new InvalidParameterException("output filter can't be null!");
 
         m_Output.write(input);
-        //m_Output2.write(input.copy());  // muss noch ausprogrammiert werden
+        //m_Output2.write(input.copy());  // es muss eine kopie weiter geschickt werden, da ansonsten mit dem gleichen objekt in zwei klassen gearbeitet wird
     }
 
 }
