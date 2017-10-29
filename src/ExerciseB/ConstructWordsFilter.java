@@ -20,8 +20,9 @@ public class ConstructWordsFilter extends DataCompositionFilter<Character, Word>
         if (nextVal != null) {
             if (!nextVal.equals(' ')) {    //null = Ende vom Text und ' ' signalisiert das Ende eines Wortes
                 entity.addChar(nextVal);
+
+                return false;
             }
-            return false;
         }
 
         return true;    // zum senden des Wortes

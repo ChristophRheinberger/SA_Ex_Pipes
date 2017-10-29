@@ -16,6 +16,7 @@ public class Line {
 
     public void addWord(Word w){
         sb.append(w);
+        sb.append(" ");
         line = sb.toString();
     }
 

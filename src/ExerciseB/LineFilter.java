@@ -20,19 +20,12 @@ public class LineFilter extends DataCompositionFilter<Word, Line> {
 
         System.out.println(nextVal);
 
-        if (entity.toString() != null) {
-            if (nextVal != null && length >= (nextVal.length() + entity.length())) {
-                entity.addWord(nextVal);
-                System.out.println(entity);
-                return false;
-            }
-        } else {
-            if (nextVal != null && length >= (nextVal.length() + 0)) {
-                entity.addWord(nextVal);
-                System.out.println(entity);
-                return false;
-            }
+        if (nextVal != null && length >= (nextVal.length() + entity.length())) {
+            entity.addWord(nextVal);
+            System.out.println(entity);
+            return false;
         }
+
 
         return true;
     }
