@@ -1,5 +1,6 @@
 package ExerciseA;
 
+import ExerciseB.Line;
 import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class CreateWordList extends DataTransformationFilter2<String, ArrayList<String>> {
+public class CreateWordList extends DataTransformationFilter2<Line, ArrayList<String>> {
     protected int line = 1;
 
     public CreateWordList(Writeable<ArrayList<String>> output) throws InvalidParameterException {
@@ -19,26 +20,30 @@ public class CreateWordList extends DataTransformationFilter2<String, ArrayList<
     }
 
     @Override
-    protected ArrayList<String> process(String entity) throws FileNotFoundException, StreamCorruptedException {
-        String input = entity;
+    protected ArrayList<String> process(Line entity) throws FileNotFoundException, StreamCorruptedException {
 
-        input = input.replaceAll("[\\W\\d_]+", " ");
-        input = input.replaceAll("\\s\\s", "");
-        input = input.trim();
-
-        String[] inputArray = input.split(" ");
         ArrayList<String> inputList = new ArrayList();
 
-        for (String s : inputArray) {
-            if(!input.isEmpty() || !input.equals("")){
-                inputList.add(s);
+        if(entity.toString() != null) {
+
+            String input = entity.toString();
+
+            input = input.replaceAll("[\\W\\d_]+", " ");
+            input = input.replaceAll("\\s\\s", "");
+            input = input.trim();
+
+            String[] inputArray = input.split(" ");
+
+            for (String s : inputArray) {
+                if (!input.isEmpty() || !input.equals("")) {
+                    inputList.add(s);
+                }
             }
+
+            inputList.add(String.valueOf(line));
+
+            line++;
         }
-
-        inputList.add(String.valueOf(line));
-
-        line++;
         return inputList;
-
     }
 }

@@ -1,5 +1,6 @@
 package ExerciseA;
 
+import ExerciseB.Line;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 
@@ -25,7 +26,7 @@ public class main {
 
         CreateWordList createWordList = new CreateWordList(pipeLineList);
 
-        SimplePipe<String> pipeLineString = new SimplePipe<String>(createWordList);
+        SimplePipe<Line> pipeLineString = new SimplePipe<Line>(createWordList);
 
         SrcFilterFileLoad srcFilterFileLoad = new SrcFilterFileLoad(pipeLineString);
 

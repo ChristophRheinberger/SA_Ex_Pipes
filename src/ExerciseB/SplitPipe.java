@@ -12,20 +12,20 @@ import java.security.InvalidParameterException;
 /**
  * Created by ClemensB on 28.10.17.
  */
-public class SplitPipe<T> implements IOable<T, T> {
+public class SplitPipe implements IOable<Line, Line> {
 
-    private Readable<T> m_Input = null;
-    private Writeable<T> m_Output = null;
-    private Writeable<T> m_Output2 = null;
+    private Readable<Line> m_Input = null;
+    private Writeable<Line> m_Output = null;
+    private Writeable<Line> m_Output2 = null;
 
-    public SplitPipe(Readable<T> input)   {
+    public SplitPipe(Readable<Line> input)   {
         if (input == null){
             throw new InvalidParameterException("input filter can't be null!");
         }
         m_Input = input;
     }
 
-    public SplitPipe(Writeable<T> output, Writeable<T> output2)   {
+    public SplitPipe(Writeable<Line> output, Writeable<Line> output2)   {
         if (output == null || output2 == null){
             throw new InvalidParameterException("output filter can't be null!");
         }
@@ -33,7 +33,7 @@ public class SplitPipe<T> implements IOable<T, T> {
         m_Output2 = output2;
     }
 
-    public SplitPipe(Readable<T> input, Writeable<T> output, Writeable<T> output2)   {
+    public SplitPipe(Readable<Line> input, Writeable<Line> output, Writeable<Line> output2)   {
         if (output == null || output2 == null){
             throw new InvalidParameterException("output filter can't be null!");
         }
@@ -46,19 +46,23 @@ public class SplitPipe<T> implements IOable<T, T> {
         m_Input = input;
     }
 
-    public T read() throws StreamCorruptedException, FileNotFoundException {
+    public Line read() throws StreamCorruptedException, FileNotFoundException {
         if ( m_Input == null )
             throw new InvalidParameterException("input filter can't be null!");
 
         return m_Input.read();
     }
 
-    public void write(T input) throws IOException {
+    public void write(Line input) throws IOException {
         if ( m_Output == null || m_Output2 == null )
             throw new InvalidParameterException("output filter can't be null!");
 
         m_Output.write(input);
-        //m_Output2.write(input.copy());  // es muss eine kopie weiter geschickt werden, da ansonsten mit dem gleichen objekt in zwei klassen gearbeitet wird
-    }
 
+        if(input != null) {
+            m_Output2.write(input.copy());
+        } else {
+            m_Output2.write(input);
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package ExerciseA;
 
+import ExerciseB.Line;
 import pmp.filter.Source;
 import pmp.interfaces.Writeable;
 
@@ -11,10 +12,10 @@ import java.io.IOException;
 /**
  * Created by Christoph on 23.10.2017.
  */
-public class SrcFilterFileLoad extends Source<String>{
+public class SrcFilterFileLoad extends Source<Line>{
     public BufferedReader br = null;
 
-    public SrcFilterFileLoad(Writeable<String> output) {
+    public SrcFilterFileLoad(Writeable<Line> output) {
         super(output);
     }
 
@@ -26,11 +27,13 @@ public class SrcFilterFileLoad extends Source<String>{
     }
 
     @Override
-    public String read() throws FileNotFoundException {
-        String line = null;
+    public Line read() throws FileNotFoundException {
+        String string = null;
+        Line line = new Line();
         BufferedReader buffReader = getBr();
         try {
-            while((line = buffReader.readLine()) != null) {
+            while((string = buffReader.readLine()) != null) {
+                line.setLine(string);
                 return line;
             }
             return null;

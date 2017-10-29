@@ -31,9 +31,9 @@ public class SrcCharFilter extends Source<Character> {
     @Override
     public Character read() throws StreamCorruptedException, FileNotFoundException {
         int r;
-        fr = getFr();       // holen des FileReaders
+        fr = getFr();                       // holen des FileReaders
         try {
-            while((r = fr.read()) != -1){       //-1 ist das Ende vom File
+            while((r = fr.read()) != -1){   //-1 ist das Ende vom File
                 return((char) r);           // jeder Char wird weiter geleitet
             }
         } catch (IOException e) {
