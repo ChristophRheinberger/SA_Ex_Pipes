@@ -12,7 +12,9 @@ public class Line {
         this.line = n.toString();
     }
 
-    public Line() {}
+    public Line() {
+        this.line = "";
+    }
 
     public void addWord(Word w){
         sb.append(w);

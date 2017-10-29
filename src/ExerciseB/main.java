@@ -16,7 +16,6 @@ public class main {
 
     public static void main(String args[]) {
 
-
         FileSaveSink IndexSaveSink = new FileSaveSink();
 
         SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>((Writeable<ArrayList<String>>) IndexSaveSink);
@@ -33,15 +32,15 @@ public class main {
 
 
 
-        AlignedFileSaveSink AlignmentSaveSink = new AlignedFileSaveSink();
+        AlignedFileSaveSink alignmentSaveSink = new AlignedFileSaveSink();
 
-        SplitPipe splitPipe = new SplitPipe(createWordList, AlignmentSaveSink);
+        SplitPipe splitPipe = new SplitPipe(createWordList, alignmentSaveSink);
 
-        AlignmentFilter alignmentFilter = new AlignmentFilter(splitPipe);
+        AlignmentFilter alignmentFilter = new AlignmentFilter(splitPipe, Integer.parseInt(args[0]), args[1]);
 
         SimplePipe<Line> pipeAlignmentFilter = new SimplePipe<>((Writeable<Line>) alignmentFilter);
 
-        LineFilter lineFilter = new LineFilter(pipeAlignmentFilter);
+        LineFilter lineFilter = new LineFilter(pipeAlignmentFilter, Integer.parseInt(args[0]));
 
         SimplePipe<Word> lineSimplePipe = new SimplePipe<Word>(lineFilter);
 

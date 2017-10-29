@@ -17,15 +17,31 @@ public class ConstructWordsFilter extends DataCompositionFilter<Character, Word>
     @Override
     protected boolean fillEntity(Character nextVal, Word entity) {
 
+        /*
         if (nextVal != null) {
-            if (!nextVal.equals(' ')) {    //null = Ende vom Text und ' ' signalisiert das Ende eines Wortes
+            if (!nextVal.equals(' ') || !nextVal.equals('\t') || !nextVal.equals('\n')) {    //null = Ende vom Text und ' ' signalisiert das Ende eines Wortes
                 entity.addChar(nextVal);
 
                 return false;
             }
         }
 
+        System.out.println(entity);
+
         return true;    // zum senden des Wortes
+
+        */
+
+        if (nextVal != null) {
+            if (nextVal.equals(' ') || nextVal.equals('\t') || nextVal.equals('\n') || nextVal.equals('\r')) {
+                return true;
+            }
+        }
+
+        entity.addChar(nextVal);
+
+        return false;    // zum senden des Wortes
+
     }
 
     @Override

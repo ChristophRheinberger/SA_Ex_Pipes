@@ -9,23 +9,30 @@ import java.security.InvalidParameterException;
  * Created by ClemensB on 28.10.17.
  */
 public class LineFilter extends DataCompositionFilter<Word, Line> {
-    private int length = 100;       // Länge einer Linie
+    private int length;       // Länge einer Linie
+    private Word tmp = null;
 
-    public LineFilter(Writeable<Line> output) throws InvalidParameterException {
+    public LineFilter(Writeable<Line> output, int length) throws InvalidParameterException {
         super(output);
+        this.length = length;
     }
 
     @Override
     protected boolean fillEntity(Word nextVal, Line entity) {
 
-        System.out.println(nextVal);
-
-        if (nextVal != null && length >= (nextVal.length() + entity.length())) {
-            entity.addWord(nextVal);
-            System.out.println(entity);
-            return false;
+        if ( tmp != null ) {
+            entity.addWord(tmp);
+            tmp = null;
         }
 
+        if ( nextVal != null ) {
+            if (nextVal.toString() != null && length >= (nextVal.length() + entity.length())) {
+                entity.addWord(nextVal);
+                return false;
+            } else if(nextVal.toString() != null && length < (nextVal.length() + entity.length())) {
+                tmp = nextVal;
+            }
+        }
 
         return true;
     }

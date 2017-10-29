@@ -9,17 +9,19 @@ import java.security.InvalidParameterException;
  * Created by ClemensB on 28.10.17.
  */
 public class AlignmentFilter extends DataTransformationFilter1<Line> {
-    private int length = 100;       // Länge einer Linie
+    int length;
     private Enum<Alignment> alignment = Alignment.left;
 
-    public AlignmentFilter(Writeable<Line> output) throws InvalidParameterException {
+    public AlignmentFilter(Writeable<Line> output, int lentgh, String alignment) throws InvalidParameterException {
         super(output);
+        this.length = lentgh;
+        this.alignment = Alignment.valueOf(alignment);
     }
 
     @Override
     protected void process(Line entity) {
 
-        if ( entity.toString() != null) {
+        if ( entity.toString() != null && !entity.toString().equals("")) {
             StringBuilder builder = new StringBuilder(entity.toString());
             int amount = length - builder.length();
 
