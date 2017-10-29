@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class main {
     public static void main(String args[]) {
 
-        FileSaveSink fileSaveSink = new FileSaveSink();
+        FileSaveSink fileSaveSink = new FileSaveSink("BookIndex.txt");
 
         SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>((Writeable<ArrayList<String>>) fileSaveSink);
 

@@ -15,6 +15,12 @@ import java.util.ArrayList;
  */
 public class FileSaveSink extends Sink<ArrayList<String>> {
     protected BufferedWriter bw = null;
+    private String file;
+
+    public FileSaveSink (String file) {
+        super();
+        this.file = file;
+    }
 
     @Override
     public ArrayList<String> read() throws StreamCorruptedException, FileNotFoundException {
@@ -23,7 +29,7 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
 
     private BufferedWriter getBw() throws IOException {
         if(bw == null){
-            bw = new BufferedWriter(new FileWriter("BookIndex.txt"));
+            bw = new BufferedWriter(new FileWriter(file));
         }
         return bw;
     }

@@ -16,7 +16,7 @@ public class main {
 
     public static void main(String args[]) {
 
-        FileSaveSink IndexSaveSink = new FileSaveSink();
+        FileSaveSink IndexSaveSink = new FileSaveSink("AlignedBookIndex.txt");
 
         SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>((Writeable<ArrayList<String>>) IndexSaveSink);
 

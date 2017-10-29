@@ -10,7 +10,7 @@ import java.security.InvalidParameterException;
  */
 public class AlignmentFilter extends DataTransformationFilter1<Line> {
     int length;
-    private Enum<Alignment> alignment = Alignment.left;
+    private Enum<Alignment> alignment;
 
     public AlignmentFilter(Writeable<Line> output, int lentgh, String alignment) throws InvalidParameterException {
         super(output);
@@ -46,7 +46,6 @@ public class AlignmentFilter extends DataTransformationFilter1<Line> {
                     builder.append(" ");
                 }
 
-                System.out.println(entity);
                 entity.setLine(builder.toString());
             }
         }
