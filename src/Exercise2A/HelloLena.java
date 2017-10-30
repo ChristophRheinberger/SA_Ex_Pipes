@@ -2,7 +2,11 @@ package Exercise2A;
 
 import com.sun.media.jai.widget.DisplayJAI;
 
-import javax.media.jai.*;
+import javax.media.jai.JAI;
+import javax.media.jai.KernelJAI;
+import javax.media.jai.PlanarImage;
+import javax.media.jai.operator.MedianFilterDescriptor;
+import javax.media.jai.operator.ThresholdDescriptor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.renderable.ParameterBlock;
@@ -16,12 +20,20 @@ public class HelloLena
    float[] kernelMatrix;
    KernelJAI kernel = null;
    kernelMatrix = new float[]    {0, -1, 0, 
-			  -1, 8, -1,
-                                             0, -1, 0 };
+                                 -1, 8, -1,
+                                  0, -1, 0 };
 
    kernel = new KernelJAI(3, 3, kernelMatrix);
+
+   int xOffset = 0;
+   int yOffset = 50;
 	  
-   PlanarImage image = JAI.create("fileload", "lena512.jpg");
+   PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
+
+   Rectangle rectangleCut = new Rectangle(xOffset, yOffset, image.getWidth(), image.getHeight()/5);
+
+   PlanarImage imageCut = PlanarImage.wrapRenderedImage(image.getAsBufferedImage(rectangleCut, image.getColorModel()));
+
  
 // Get some information about the image
    String imageInfo =
@@ -29,7 +41,7 @@ public class HelloLena
 
 // Create a frame for display.
    JFrame frame = new JFrame();
-   frame.setTitle("DisplayJAI: lena512.jpg");
+   frame.setTitle("DisplayJAI: loetstellen.jpg");
 
 // Get the JFrame’ ContentPane.
    Container contentPane = frame.getContentPane();
@@ -37,14 +49,16 @@ public class HelloLena
 
 // prepare the parameters for a filter operation with the mask "kernelmatrix"
    ParameterBlock pb = new ParameterBlock();
-   pb.addSource(image);
+   pb.addSource(imageCut);
    pb.add(kernel);
  
 // apply a filter operation with the mask "kernelmatrix"
-   image = JAI.create("convolve", pb);
+   imageCut = ThresholdDescriptor.create(imageCut, new double[]{0}, new double []{40}, new double[]{255}, null);
+
+   imageCut = MedianFilterDescriptor.create(imageCut, MedianFilterDescriptor.MEDIAN_MASK_PLUS, 15, null);
 
 // Create an instance of DisplayJAI.
-   DisplayJAI dj = new DisplayJAI(image);
+   DisplayJAI dj = new DisplayJAI(imageCut);
  
 
 // Add to the JFrame’ ContentPane an instance of JScrollPane
@@ -56,7 +70,7 @@ public class HelloLena
 
 // Set the closing operation so the application is finished.   
    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   frame.setSize(400,200); // adjust the frame size.
+   frame.setSize(imageCut.getWidth()+50,imageCut.getHeight()+60); // adjust the frame size.
    frame.setVisible(true); // show the frame.
  }
  }
