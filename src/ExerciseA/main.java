@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class main {
     public static void main(String args[]) {
 
-        FileSaveSink fileSaveSink = new FileSaveSink("BookIndex.txt");
+        FileSaveSink fileSaveSink = new FileSaveSink();
 
         SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>((Writeable<ArrayList<String>>) fileSaveSink);
 
@@ -28,7 +28,7 @@ public class main {
 
         SimplePipe<Line> pipeLineString = new SimplePipe<Line>(createWordList);
 
-        SrcFilterFileLoad srcFilterFileLoad = new SrcFilterFileLoad(pipeLineString);
+        SrcFilterFileLoad srcFilterFileLoad = new SrcFilterFileLoad(pipeLineString, args[0]);
 
         srcFilterFileLoad.run();
 

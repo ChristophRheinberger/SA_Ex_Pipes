@@ -16,7 +16,7 @@ public class main {
 
     public static void main(String args[]) {
 
-        FileSaveSink IndexSaveSink = new FileSaveSink("AlignedBookIndex.txt");
+        FileSaveSink IndexSaveSink = new FileSaveSink();
 
         SimplePipe<ArrayList<String>> filePipe = new SimplePipe<>((Writeable<ArrayList<String>>) IndexSaveSink);
 
@@ -36,11 +36,11 @@ public class main {
 
         SplitPipe splitPipe = new SplitPipe(createWordList, alignmentSaveSink);
 
-        AlignmentFilter alignmentFilter = new AlignmentFilter(splitPipe, Integer.parseInt(args[0]), args[1]);
+        AlignmentFilter alignmentFilter = new AlignmentFilter(splitPipe, Integer.parseInt(args[1]), args[2]);
 
         SimplePipe<Line> pipeAlignmentFilter = new SimplePipe<>((Writeable<Line>) alignmentFilter);
 
-        LineFilter lineFilter = new LineFilter(pipeAlignmentFilter, Integer.parseInt(args[0]));
+        LineFilter lineFilter = new LineFilter(pipeAlignmentFilter, Integer.parseInt(args[1]));
 
         SimplePipe<Word> lineSimplePipe = new SimplePipe<Word>(lineFilter);
 
@@ -48,7 +48,7 @@ public class main {
 
         SimplePipe<Character> characterSimplePipe = new SimplePipe<Character>(constructWordsFilter);
 
-        SrcCharFilter srcCharFilter = new SrcCharFilter(characterSimplePipe);
+        SrcCharFilter srcCharFilter = new SrcCharFilter(characterSimplePipe, args[0]);
 
         srcCharFilter.run();
 

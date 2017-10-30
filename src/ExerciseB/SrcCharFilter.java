@@ -14,16 +14,18 @@ import java.io.StreamCorruptedException;
 public class SrcCharFilter extends Source<Character> {
 
     private FileReader fr;
+    private String file;
 
     private StringBuilder sb = new StringBuilder();
 
-    public SrcCharFilter(Writeable<Character> output) {
+    public SrcCharFilter(Writeable<Character> output, String file) {
         super(output);
+        this.file = file;
     }
 
     private FileReader getFr() throws FileNotFoundException {
         if(fr == null){
-            fr = new FileReader("aliceInWonderland.txt");
+            fr = new FileReader(file);
         }
         return fr;
     }

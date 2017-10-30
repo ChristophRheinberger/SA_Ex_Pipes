@@ -14,9 +14,11 @@ import java.io.IOException;
  */
 public class SrcFilterFileLoad extends Source<Line>{
     public BufferedReader br = null;
+    private String file;
 
-    public SrcFilterFileLoad(Writeable<Line> output) {
+    public SrcFilterFileLoad(Writeable<Line> output, String file) {
         super(output);
+        this.file = file;
     }
 
     private BufferedReader getBr() throws FileNotFoundException {

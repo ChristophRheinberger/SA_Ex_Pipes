@@ -15,11 +15,9 @@ import java.util.ArrayList;
  */
 public class FileSaveSink extends Sink<ArrayList<String>> {
     protected BufferedWriter bw = null;
-    private String file;
 
-    public FileSaveSink (String file) {
+    public FileSaveSink() {
         super();
-        this.file = file;
     }
 
     @Override
@@ -29,7 +27,7 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
 
     private BufferedWriter getBw() throws IOException {
         if(bw == null){
-            bw = new BufferedWriter(new FileWriter(file));
+            bw = new BufferedWriter(new FileWriter("BookIndex.txt"));
         }
         return bw;
     }
