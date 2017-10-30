@@ -5,7 +5,9 @@ import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -45,5 +47,10 @@ public class CreateWordList extends DataTransformationFilter2<Line, ArrayList<St
             line++;
         }
         return inputList;
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

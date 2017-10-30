@@ -1,9 +1,11 @@
 package pmp.pipes;
 
-import java.io.StreamCorruptedException;
-import java.util.LinkedList;
-
 import pmp.interfaces.IOable;
+
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
+import java.util.LinkedList;
 
 public class BufferedSyncPipe<T> implements IOable<T, T>{
 
@@ -44,5 +46,10 @@ public class BufferedSyncPipe<T> implements IOable<T, T>{
 		}
 		 m_Buf.addLast(value);
 		notifyAll();	// waiting in read
+	}
+
+	@Override
+	public int read(CharBuffer cb) throws IOException {
+		return 0;
 	}
 }

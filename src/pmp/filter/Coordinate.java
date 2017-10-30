@@ -1,5 +1,5 @@
 
-package dataContainers;
+package pmp.filter;
 
 public class Coordinate {
 

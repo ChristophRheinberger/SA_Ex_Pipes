@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.CharBuffer;
 
 /**
  * Created by Christoph on 23.10.2017.
@@ -43,5 +44,10 @@ public class SrcFilterFileLoad extends Source<Line>{
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

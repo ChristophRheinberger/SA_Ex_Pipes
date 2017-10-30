@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
 
 /**
  * Created by ClemensB on 28.10.17.
@@ -42,5 +43,10 @@ public class SrcCharFilter extends Source<Character> {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

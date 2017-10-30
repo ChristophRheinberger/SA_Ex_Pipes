@@ -3,6 +3,8 @@ package Exercise1B;
 import pmp.filter.DataTransformationFilter1;
 import pmp.interfaces.Writeable;
 
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 
 /**
@@ -49,5 +51,10 @@ public class AlignmentFilter extends DataTransformationFilter1<Line> {
                 entity.setLine(builder.toString());
             }
         }
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

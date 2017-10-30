@@ -7,6 +7,7 @@ import pmp.interfaces.Writeable;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 
 public class SimplePipe<T> implements IOable<T, T> {
@@ -53,4 +54,9 @@ public class SimplePipe<T> implements IOable<T, T> {
 		
 		m_Output.write(input);
 	}
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
+    }
 }

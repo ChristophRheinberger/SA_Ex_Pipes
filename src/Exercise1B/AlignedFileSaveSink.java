@@ -3,6 +3,7 @@ package Exercise1B;
 import pmp.filter.Sink;
 
 import java.io.*;
+import java.nio.CharBuffer;
 
 /*
  * a simple sink: takes passively objects or pulls actively objects without doing anything with the stream objects
@@ -40,5 +41,10 @@ public class AlignedFileSaveSink extends Sink<Line> {
             }
         }
         bwAligned.flush();
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

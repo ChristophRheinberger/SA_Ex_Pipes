@@ -1,9 +1,11 @@
-import java.awt.*;
-import java.awt.image.renderable.ParameterBlock;
+package Exercise2A;
+
+import com.sun.media.jai.widget.DisplayJAI;
 
 import javax.media.jai.*;
 import javax.swing.*;
-import com.sun.media.jai.widget.DisplayJAI;
+import java.awt.*;
+import java.awt.image.renderable.ParameterBlock;
 
 public class HelloLena
 {
@@ -19,7 +21,7 @@ public class HelloLena
 
    kernel = new KernelJAI(3, 3, kernelMatrix);
 	  
-   PlanarImage image = JAI.create("fileload", "C:\\lehre\\ml\\hastieBook\\lena512.jpg");
+   PlanarImage image = JAI.create("fileload", "lena512.jpg");
  
 // Get some information about the image
    String imageInfo =

@@ -4,7 +4,9 @@ import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,5 +55,10 @@ public class ShiftWordList extends DataTransformationFilter2<ArrayList<String>, 
         }
 
         return outputList;
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

@@ -3,6 +3,8 @@ package Exercise1A;
 import pmp.filter.DataCompositionFilter;
 import pmp.interfaces.Writeable;
 
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,5 +53,10 @@ public class SortListFilter extends DataCompositionFilter<ArrayList<String>, Arr
                 return s1.compareToIgnoreCase(s2);
             }
         });
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

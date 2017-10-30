@@ -2,30 +2,28 @@
  * all other pixels in the image are expected to have a pixel value < 255
  * use this filter adapting eventually the package name 
  */
-package imageProcessing.filters;
+package pmp.filter;
 
+import pmp.interfaces.Writeable;
+
+import javax.media.jai.PlanarImage;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import javax.media.jai.PlanarImage;
-
-import dataContainers.Coordinate;
-import pimpMyPipe.filter.DataEnrichmentFilter;
-import pimpMyPipe.interfaces.Readable;
-import pimpMyPipe.interfaces.Writeable;
-
-public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, LinkedList<Coordinate>>{
+public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>> {
 
 	private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
 	private LinkedList<LinkedList<Coordinate>> _figures = new LinkedList<LinkedList<Coordinate>>();
 	private PlanarImage _image;
 	
 	
-	public CalcCentroidsFilter(Readable<PlanarImage> input) throws InvalidParameterException {
-		super(input);
+	public CalcCentroidsFilter(Readable input) throws InvalidParameterException {
+		super((pmp.interfaces.Readable<PlanarImage>) input);
 	}
 	
 	public CalcCentroidsFilter(Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
@@ -49,8 +47,12 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 		return new LinkedList<Coordinate>();
 	}
 
+	@Override
+	protected void beforeSendingData() {
 
-	
+	}
+
+
 	private Coordinate[] process(PlanarImage entity) {
 		BufferedImage bi = entity.getAsBufferedImage();
 		
@@ -121,5 +123,10 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 			i++;
 		}
 		return centroids;
+	}
+
+	@Override
+	public int read(CharBuffer cb) throws IOException {
+		return 0;
 	}
 }

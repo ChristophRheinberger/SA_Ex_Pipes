@@ -3,6 +3,7 @@ package Exercise1A;
 import pmp.filter.Sink;
 
 import java.io.*;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 
 /*
@@ -51,5 +52,10 @@ public class FileSaveSink extends Sink<ArrayList<String>> {
                 bw.flush();
             }
         }
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }

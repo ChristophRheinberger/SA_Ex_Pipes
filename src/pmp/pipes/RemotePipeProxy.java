@@ -1,12 +1,12 @@
 package pmp.pipes;
 
-import java.io.StreamCorruptedException;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-
 import pmp.interfaces.IOable;
+
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.nio.CharBuffer;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
 
 public class RemotePipeProxy<T> implements IOable<T, T>{
 
@@ -36,6 +36,10 @@ public class RemotePipeProxy<T> implements IOable<T, T>{
             throw new StreamCorruptedException(e.getMessage());
         }
     }
-    
 
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
+    }
 }

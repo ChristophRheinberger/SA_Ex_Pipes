@@ -3,6 +3,8 @@ package Exercise1B;
 import pmp.filter.DataCompositionFilter;
 import pmp.interfaces.Writeable;
 
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
 
 /**
@@ -52,5 +54,10 @@ public class ConstructWordsFilter extends DataCompositionFilter<Character, Word>
     @Override
     protected void beforeSendingData() {
 
+    }
+
+    @Override
+    public int read(CharBuffer cb) throws IOException {
+        return 0;
     }
 }
