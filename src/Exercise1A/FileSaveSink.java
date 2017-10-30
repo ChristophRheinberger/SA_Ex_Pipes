@@ -1,4 +1,4 @@
-package ExerciseA;
+package Exercise1A;
 
 import pmp.filter.Sink;
 

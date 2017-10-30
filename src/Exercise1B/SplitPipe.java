@@ -1,4 +1,4 @@
-package ExerciseB;
+package Exercise1B;
 
 import pmp.interfaces.IOable;
 import pmp.interfaces.Readable;

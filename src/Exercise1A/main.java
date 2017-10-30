@@ -1,6 +1,6 @@
-package ExerciseA;
+package Exercise1A;
 
-import ExerciseB.Line;
+import Exercise1B.Line;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 

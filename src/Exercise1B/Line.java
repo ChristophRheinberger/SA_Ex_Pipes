@@ -1,4 +1,4 @@
-package ExerciseB;
+package Exercise1B;
 
 /**
  * Created by ClemensB on 28.10.17.

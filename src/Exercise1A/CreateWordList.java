@@ -1,6 +1,6 @@
-package ExerciseA;
+package Exercise1A;
 
-import ExerciseB.Line;
+import Exercise1B.Line;
 import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Writeable;
 

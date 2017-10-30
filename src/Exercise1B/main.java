@@ -1,9 +1,9 @@
-package ExerciseB;
+package Exercise1B;
 
-import ExerciseA.CreateWordList;
-import ExerciseA.FileSaveSink;
-import ExerciseA.ShiftWordList;
-import ExerciseA.SortListFilter;
+import Exercise1A.CreateWordList;
+import Exercise1A.FileSaveSink;
+import Exercise1A.ShiftWordList;
+import Exercise1A.SortListFilter;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 
