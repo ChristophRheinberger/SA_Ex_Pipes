@@ -4,6 +4,7 @@
  */
 package pmp.filter;
 
+import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
 import javax.media.jai.PlanarImage;
@@ -15,7 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>> {
+public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>>{
 
 	private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
 	private LinkedList<LinkedList<Coordinate>> _figures = new LinkedList<LinkedList<Coordinate>>();
@@ -23,7 +24,7 @@ public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, Link
 	
 	
 	public CalcCentroidsFilter(Readable input) throws InvalidParameterException {
-		super((pmp.interfaces.Readable<PlanarImage>) input);
+		super(input);
 	}
 	
 	public CalcCentroidsFilter(Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
@@ -103,24 +104,24 @@ public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, Link
 	
 	private Coordinate[] calculateCentroids(){
 		Coordinate[] centroids = new Coordinate[_figures.size()];
-		int i = 0;
-		for (LinkedList<Coordinate> figure : _figures){
-			LinkedList<Integer> xValues= new LinkedList<Integer>();
-			LinkedList<Integer> yValues= new LinkedList<Integer>();
-			
-			for (Coordinate c : figure){
-				xValues.add(c._x);
-				yValues.add(c._y);
-			}
-			
-			Collections.sort(xValues);
-			Collections.sort(yValues);
-			
-			int xMedian = xValues.get(xValues.size() / 2);
-			int yMedian = yValues.get(yValues.size() / 2);
-			
-			centroids[i] = new Coordinate(xMedian+ (int)_image.getProperty("ThresholdX"), yMedian + (int) _image.getProperty("ThresholdY"));	
-			i++;
+            int i = 0;
+            for (LinkedList<Coordinate> figure : _figures){
+                LinkedList<Integer> xValues= new LinkedList<Integer>();
+                LinkedList<Integer> yValues= new LinkedList<Integer>();
+
+                for (Coordinate c : figure){
+                    xValues.add(c._x);
+                    yValues.add(c._y);
+                }
+
+                Collections.sort(xValues);
+                Collections.sort(yValues);
+
+                int xMedian = xValues.get(xValues.size() / 2);
+                int yMedian = yValues.get(yValues.size() / 2);
+
+                centroids[i] = new Coordinate(xMedian+ (int)_image.getProperty("ThresholdX"), yMedian + (int) _image.getProperty("ThresholdY"));
+                i++;
 		}
 		return centroids;
 	}

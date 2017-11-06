@@ -1,15 +1,22 @@
 package Exercise2A;
 
 import com.sun.media.jai.widget.DisplayJAI;
+import pmp.filter.Coordinate;
 
+import javax.imageio.ImageIO;
 import javax.media.jai.JAI;
 import javax.media.jai.KernelJAI;
 import javax.media.jai.PlanarImage;
+import javax.media.jai.operator.DilateDescriptor;
+import javax.media.jai.operator.ErodeDescriptor;
 import javax.media.jai.operator.MedianFilterDescriptor;
 import javax.media.jai.operator.ThresholdDescriptor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.renderable.ParameterBlock;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloLena
 {
@@ -23,6 +30,16 @@ public class HelloLena
                                  -1, 8, -1,
                                   0, -1, 0 };
 
+   ArrayList<Coordinate> expected_coordinates= new ArrayList<Coordinate> ();
+   // [(73,77), (110,80), (202,80), (265,79), (330,81), (396,81)]
+
+   expected_coordinates.add(new Coordinate(75, 77));
+   expected_coordinates.add(new Coordinate(110, 80));
+   expected_coordinates.add(new Coordinate(202, 80));
+   expected_coordinates.add(new Coordinate(265, 79));
+   expected_coordinates.add(new Coordinate(330, 81));
+   expected_coordinates.add(new Coordinate(396, 81));
+
    kernel = new KernelJAI(3, 3, kernelMatrix);
 
    int xOffset = 0;
@@ -34,7 +51,6 @@ public class HelloLena
 
    PlanarImage imageCut = PlanarImage.wrapRenderedImage(image.getAsBufferedImage(rectangleCut, image.getColorModel()));
 
- 
 // Get some information about the image
    String imageInfo =
    "Dimensions: "+image.getWidth()+"x"+image.getHeight()+ " Bands:"+image.getNumBands();
@@ -55,7 +71,31 @@ public class HelloLena
 // apply a filter operation with the mask "kernelmatrix"
    imageCut = ThresholdDescriptor.create(imageCut, new double[]{0}, new double []{40}, new double[]{255}, null);
 
-   imageCut = MedianFilterDescriptor.create(imageCut, MedianFilterDescriptor.MEDIAN_MASK_PLUS, 15, null);
+   imageCut = MedianFilterDescriptor.create(imageCut, MedianFilterDescriptor.MEDIAN_MASK_SQUARE, 5, null);
+
+   int amountErode = 7;
+
+   int amountDilate = 6;
+
+   for (int i = 0; i < amountErode; i++) {
+     imageCut = ErodeDescriptor.create(imageCut, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);
+   }
+
+   for (int i = 0; i < amountDilate; i++) {
+     imageCut = DilateDescriptor.create(imageCut, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);
+   }
+
+// Save Image to FIle
+   File myNewPNGFile = new File("loetstellen_punkte.png");
+
+   try {
+     ImageIO.write(imageCut, "PNG", myNewPNGFile);
+   } catch (IOException e) {
+     e.printStackTrace();
+   }
+
+// Get center of Points
+
 
 // Create an instance of DisplayJAI.
    DisplayJAI dj = new DisplayJAI(imageCut);
