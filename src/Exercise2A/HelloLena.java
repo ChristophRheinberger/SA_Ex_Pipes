@@ -42,10 +42,10 @@ public class HelloLena
 
    kernel = new KernelJAI(3, 3, kernelMatrix);
 
+   PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
+
    int xOffset = 0;
    int yOffset = 50;
-	  
-   PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
 
    Rectangle rectangleCut = new Rectangle(xOffset, yOffset, image.getWidth(), image.getHeight()/5);
 
@@ -75,11 +75,11 @@ public class HelloLena
 
    int amountErode = 7;
 
-   int amountDilate = 6;
-
    for (int i = 0; i < amountErode; i++) {
      imageCut = ErodeDescriptor.create(imageCut, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);
    }
+
+   int amountDilate = 6;
 
    for (int i = 0; i < amountDilate; i++) {
      imageCut = DilateDescriptor.create(imageCut, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);

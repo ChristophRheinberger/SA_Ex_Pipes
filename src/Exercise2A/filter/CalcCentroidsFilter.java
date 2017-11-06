@@ -2,8 +2,10 @@
  * all other pixels in the image are expected to have a pixel value < 255
  * use this filter adapting eventually the package name 
  */
-package pmp.filter;
+package Exercise2A.filter;
 
+import pmp.filter.Coordinate;
+import pmp.filter.DataCompositionFilter;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
@@ -16,7 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>>{
+public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>> {
 
 	private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
 	private LinkedList<LinkedList<Coordinate>> _figures = new LinkedList<LinkedList<Coordinate>>();
