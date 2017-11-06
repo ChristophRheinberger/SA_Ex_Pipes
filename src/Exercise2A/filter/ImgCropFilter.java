@@ -1,6 +1,6 @@
 package Exercise2A.filter;
 
-import pmp.filter.DataTransformationFilter1;
+import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 06.11.2017.
  */
-public class ImgCropFilter extends DataTransformationFilter1<PlanarImage> {
+public class ImgCropFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
     public ImgCropFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output) throws InvalidParameterException {
         super(input, output);
@@ -33,13 +33,13 @@ public class ImgCropFilter extends DataTransformationFilter1<PlanarImage> {
     }
 
     @Override
-    protected void process(PlanarImage entity) {
-
+    protected PlanarImage process(PlanarImage entity) {
         int xOffset = 0;
         int yOffset = 50;
 
         Rectangle rectangleCut = new Rectangle(xOffset, yOffset, entity.getWidth(), entity.getHeight()/5);
 
-        entity = PlanarImage.wrapRenderedImage(entity.getAsBufferedImage(rectangleCut, entity.getColorModel()));
+
+        return entity = PlanarImage.wrapRenderedImage(entity.getAsBufferedImage(rectangleCut, entity.getColorModel()));
     }
 }

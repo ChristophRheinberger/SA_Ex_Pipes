@@ -15,14 +15,21 @@ import java.nio.CharBuffer;
  */
 public class LoadImgSrc extends Source<PlanarImage> {
 
+    boolean sent = false;
+
     public LoadImgSrc (Writeable<PlanarImage> output) {
         super(output);
     }
 
     @Override
     public PlanarImage read() throws StreamCorruptedException, FileNotFoundException {
-        PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
-        return image;
+        if(!sent) {
+            PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
+            sent = true;
+            return image;
+        } else {
+            return null;
+        }
     }
 
     @Override

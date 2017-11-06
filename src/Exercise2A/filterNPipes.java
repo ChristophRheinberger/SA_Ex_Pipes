@@ -1,6 +1,7 @@
 package Exercise2A;
 
 import Exercise2A.filter.*;
+import pmp.filter.Coordinate;
 import pmp.filter.Sink;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
@@ -10,54 +11,58 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.nio.CharBuffer;
+import java.util.LinkedList;
 
 /**
  * Created by Christoph on 06.11.2017.
  */
 public class filterNPipes {
 
-    Sink sink = new Sink() {
-        @Override
-        public Object read() throws StreamCorruptedException, FileNotFoundException {
-            return null;
-        }
+    public static void main(String args[]) {
 
-        @Override
-        public int read(CharBuffer cb) throws IOException {
-            return 0;
-        }
-    };
+        Sink sink = new Sink() {
+            @Override
+            public Object read() throws StreamCorruptedException, FileNotFoundException {
+                return null;
+            }
 
-    SimplePipe sinkPipe = new SimplePipe((Writeable) sink);
+            @Override
+            public int read(CharBuffer cb) throws IOException {
+                return 0;
+            }
+        };
 
-    ImgSaveFilter imgSaveFilter = new ImgSaveFilter((Writeable<PlanarImage>) sinkPipe);
+        SimplePipe sinkPipe = new SimplePipe((Writeable) sink);
 
-    SimplePipe savePipe = new SimplePipe((Writeable) imgSaveFilter);
+        CalcCentroidsFilter calcCenterFilter = new CalcCentroidsFilter((Writeable<LinkedList<Coordinate>>) sinkPipe);
 
-    ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Writeable<PlanarImage>) savePipe, 6);
+        SimplePipe calcCentroidPipe = new SimplePipe((Writeable) calcCenterFilter);
 
-    SimplePipe dilPipe = new SimplePipe((Writeable) imgDilateFilter);
+        ImgSaveFilter imgSaveFilter = new ImgSaveFilter((Writeable<PlanarImage>) calcCentroidPipe);
 
-    ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Writeable<PlanarImage>) dilPipe, 7);
+        SimplePipe savePipe = new SimplePipe((Writeable) imgSaveFilter);
 
-    SimplePipe eroPipe = new SimplePipe((Writeable) imgErodeFilter);
+        ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Writeable<PlanarImage>) savePipe, 6);
 
-    ImgMedianFilter imgMedianFilter = new ImgMedianFilter((Writeable<PlanarImage>) eroPipe);
+        SimplePipe dilPipe = new SimplePipe((Writeable) imgDilateFilter);
 
-    SimplePipe medPipe = new SimplePipe((Writeable) imgMedianFilter);
+        ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Writeable<PlanarImage>) dilPipe, 7);
 
-    ImgThreshholdFilter imgThreshholdFilter = new ImgThreshholdFilter((Writeable<PlanarImage>) medPipe);
+        SimplePipe eroPipe = new SimplePipe((Writeable) imgErodeFilter);
 
-    SimplePipe threshPipe = new SimplePipe((Writeable) imgThreshholdFilter);
+        ImgMedianFilter imgMedianFilter = new ImgMedianFilter((Writeable<PlanarImage>) eroPipe);
 
-    ImgCropFilter imgCropFilter = new ImgCropFilter((Writeable<PlanarImage>) threshPipe);
+        SimplePipe medPipe = new SimplePipe((Writeable) imgMedianFilter);
 
-    SimplePipe cropPipe = new SimplePipe((Writeable) imgCropFilter);
+        ImgThreshholdFilter imgThreshholdFilter = new ImgThreshholdFilter((Writeable<PlanarImage>) medPipe);
 
-    LoadImgSrc loadImgSrc = new LoadImgSrc(cropPipe);
+        SimplePipe threshPipe = new SimplePipe((Writeable) imgThreshholdFilter);
 
-    
+        ImgCropFilter imgCropFilter = new ImgCropFilter((Writeable<PlanarImage>) threshPipe);
 
+        SimplePipe cropPipe = new SimplePipe((Writeable) imgCropFilter);
 
+        LoadImgSrc loadImgSrc = new LoadImgSrc(cropPipe);
 
+        loadImgSrc.run();    }
 }

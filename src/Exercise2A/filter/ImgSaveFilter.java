@@ -1,12 +1,13 @@
 package Exercise2A.filter;
 
+import com.sun.media.jai.widget.DisplayJAI;
 import pmp.filter.DataTransformationFilter1;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
-import javax.imageio.ImageIO;
 import javax.media.jai.PlanarImage;
-import java.io.File;
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.nio.CharBuffer;
 import java.security.InvalidParameterException;
@@ -29,13 +30,8 @@ public class ImgSaveFilter extends DataTransformationFilter1<PlanarImage> {
 
     @Override
     protected void process(PlanarImage entity) {
-        File myNewPNGFile = new File("loetstellen_punkte.png");
 
-        try {
-            ImageIO.write(entity, "PNG", myNewPNGFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override

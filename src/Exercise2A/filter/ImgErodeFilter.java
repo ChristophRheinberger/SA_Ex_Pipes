@@ -1,6 +1,6 @@
 package Exercise2A.filter;
 
-import pmp.filter.DataTransformationFilter1;
+import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
@@ -14,9 +14,9 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 06.11.2017.
  */
-public class ImgErodeFilter extends DataTransformationFilter1<PlanarImage> {
+public class ImgErodeFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
-    int amountErode;
+    int amountErode = 7;
 
     public ImgErodeFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output, int amount) throws InvalidParameterException {
         super(input, output);
@@ -34,10 +34,12 @@ public class ImgErodeFilter extends DataTransformationFilter1<PlanarImage> {
     }
 
     @Override
-    protected void process(PlanarImage entity) {
+    protected PlanarImage process(PlanarImage entity) {
+        PlanarImage newEntity = entity;
         for (int i = 0; i < amountErode; i++) {
-            entity = ErodeDescriptor.create(entity, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);
+            newEntity = ErodeDescriptor.create(newEntity, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);
         }
+        return newEntity;
     }
 
     @Override

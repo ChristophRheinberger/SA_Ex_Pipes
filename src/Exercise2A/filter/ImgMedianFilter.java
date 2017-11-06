@@ -1,6 +1,6 @@
 package Exercise2A.filter;
 
-import pmp.filter.DataTransformationFilter1;
+import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 06.11.2017.
  */
-public class ImgMedianFilter extends DataTransformationFilter1<PlanarImage> {
+public class ImgMedianFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
     public ImgMedianFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output) throws InvalidParameterException {
         super(input, output);
     }
@@ -27,9 +27,8 @@ public class ImgMedianFilter extends DataTransformationFilter1<PlanarImage> {
     }
 
     @Override
-    protected void process(PlanarImage entity) {
-
-        entity = MedianFilterDescriptor.create(entity, MedianFilterDescriptor.MEDIAN_MASK_SQUARE, 5, null);
+    protected PlanarImage process(PlanarImage entity) {
+        return entity = MedianFilterDescriptor.create(entity, MedianFilterDescriptor.MEDIAN_MASK_SQUARE, 5, null);
     }
 
     @Override

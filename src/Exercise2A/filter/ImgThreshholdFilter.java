@@ -1,6 +1,6 @@
 package Exercise2A.filter;
 
-import pmp.filter.DataTransformationFilter1;
+import pmp.filter.DataTransformationFilter2;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 06.11.2017.
  */
-public class ImgThreshholdFilter extends DataTransformationFilter1<PlanarImage> {
+public class ImgThreshholdFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
     public ImgThreshholdFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output) throws InvalidParameterException {
         super(input, output);
     }
@@ -27,8 +27,8 @@ public class ImgThreshholdFilter extends DataTransformationFilter1<PlanarImage> 
     }
 
     @Override
-    protected void process(PlanarImage entity) {
-        entity= ThresholdDescriptor.create(entity, new double[]{0}, new double []{40}, new double[]{255}, null);
+    protected PlanarImage process(PlanarImage entity) {
+        return entity= ThresholdDescriptor.create(entity, new double[]{0}, new double []{40}, new double[]{255}, null);
     }
 
     @Override
