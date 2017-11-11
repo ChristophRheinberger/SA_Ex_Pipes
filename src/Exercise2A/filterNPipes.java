@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.nio.CharBuffer;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 
 /**
@@ -21,21 +21,11 @@ public class filterNPipes {
 
     public static void main(String args[]) {
 
-        Sink sink = new Sink() {
-            @Override
-            public Object read() throws StreamCorruptedException, FileNotFoundException {
-                return null;
-            }
-
-            @Override
-            public int read(CharBuffer cb) throws IOException {
-                return 0;
-            }
-        };
+        ImgSink sink = new ImgSink();
 
         SimplePipe sinkPipe = new SimplePipe((Writeable) sink);
 
-        CalcCentroidsFilter calcCenterFilter = new CalcCentroidsFilter((Writeable<LinkedList<Coordinate>>) sinkPipe);
+        FilterCalcCentroids calcCenterFilter = new FilterCalcCentroids((Writeable<ArrayList<Coordinate>>) sinkPipe);
 
         SimplePipe calcCentroidPipe = new SimplePipe((Writeable) calcCenterFilter);
 
@@ -66,4 +56,16 @@ public class filterNPipes {
         LoadImgSrc loadImgSrc = new LoadImgSrc(cropPipe);
 
         loadImgSrc.run();    }
+
+
+        public static ArrayList<Coordinate> getExpectedCentroids() {
+            ArrayList<Coordinate> coordinates = new ArrayList<Coordinate>();
+            coordinates.add(new Coordinate(73,77));
+            coordinates.add(new Coordinate(110,80));
+            coordinates.add(new Coordinate(202,80));
+            coordinates.add(new Coordinate(265,79));
+            coordinates.add(new Coordinate(330,81));
+            coordinates.add(new Coordinate(396,81));
+            return coordinates;
+    }
 }
