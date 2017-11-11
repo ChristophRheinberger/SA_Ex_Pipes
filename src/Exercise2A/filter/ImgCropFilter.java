@@ -34,7 +34,7 @@ public class ImgCropFilter extends DataTransformationFilter2<PlanarImage, Planar
 
     @Override
     protected PlanarImage process(PlanarImage entity) {
-        int xOffset = 0;
+        int xOffset = 50;
         int yOffset = 50;
 
         Rectangle rectangleCut = new Rectangle(xOffset, yOffset, entity.getWidth(), entity.getHeight()/5);

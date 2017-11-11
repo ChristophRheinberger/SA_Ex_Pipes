@@ -43,7 +43,7 @@ public class FilterCalcCentroids extends DataTransformationFilter2<PlanarImage, 
         for (int x = 0; x < bi.getWidth(); x++) {
             for (int y = 0; y < bi.getHeight(); y++) {
                 int p = bi.getRaster().getSample(x, y, 0);
-                if (p == 255 && _general.containsKey(new Coordinate(x, y)) == false) {
+                if (p >= 248 && _general.containsKey(new Coordinate(x, y)) == false) {
                     getNextFigure(bi, x, y);        //if there is a not visited white pixel, save all pixels belonging to the same figure
                 }
             }
@@ -63,22 +63,22 @@ public class FilterCalcCentroids extends DataTransformationFilter2<PlanarImage, 
     }
 
     private void addConnectedComponents(BufferedImage img, ArrayList<Coordinate> figure, int x, int y) {
-        if (x - 1 >= 0 && _general.containsKey((new Coordinate(x - 1, y))) == false && img.getRaster().getSample(x - 1, y, 0) == 255) {
+        if (x - 1 >= 0 && _general.containsKey((new Coordinate(x - 1, y))) == false && img.getRaster().getSample(x - 1, y, 0) >= 248) {
             _general.put(new Coordinate(x - 1, y), true);
             figure.add(new Coordinate(x - 1, y));
             addConnectedComponents(img, figure, x - 1, y);
         }
-        if (x + 1 < img.getWidth() && _general.containsKey((new Coordinate(x + 1, y))) == false && img.getRaster().getSample(x + 1, y, 0) == 255) {
+        if (x + 1 < img.getWidth() && _general.containsKey((new Coordinate(x + 1, y))) == false && img.getRaster().getSample(x + 1, y, 0) >= 248) {
             _general.put(new Coordinate(x + 1, y), true);
             figure.add(new Coordinate(x + 1, y));
             addConnectedComponents(img, figure, x + 1, y);
         }
-        if (y - 1 >= 0 && _general.containsKey((new Coordinate(x, y - 1))) == false && img.getRaster().getSample(x, y - 1, 0) == 255) {
+        if (y - 1 >= 0 && _general.containsKey((new Coordinate(x, y - 1))) == false && img.getRaster().getSample(x, y - 1, 0) >= 248) {
             _general.put(new Coordinate(x, y - 1), true);
             figure.add(new Coordinate(x, y - 1));
             addConnectedComponents(img, figure, x, y - 1);
         }
-        if (y + 1 < img.getHeight() && _general.containsKey((new Coordinate(x, y + 1))) == false && img.getRaster().getSample(x, y + 1, 0) == 255) {
+        if (y + 1 < img.getHeight() && _general.containsKey((new Coordinate(x, y + 1))) == false && img.getRaster().getSample(x, y + 1, 0) >= 248) {
             _general.put(new Coordinate(x, y + 1), true);
             figure.add(new Coordinate(x, y + 1));
             addConnectedComponents(img, figure, x, y + 1);

@@ -21,7 +21,7 @@ public class filterNPipes {
 
     public static void main(String args[]) {
 
-        ImgSink sink = new ImgSink();
+        ImgSink sink = new ImgSink(getExpectedCentroids(), 10);
 
         SimplePipe sinkPipe = new SimplePipe((Writeable) sink);
 
