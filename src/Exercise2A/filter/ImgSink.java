@@ -44,12 +44,11 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
                 }
             }
 
-            //PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("Centriods.txt", "UTF-8");
             for ( Pair p: correctCentroids ) {
-                System.out.println(p.toString());
-                //writer.write(p.toString());
+                writer.write(p.toString() + System.lineSeparator());
             }
-            //writer.close();
+            writer.close();
         }
     }
 
