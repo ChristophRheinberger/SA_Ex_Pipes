@@ -34,5 +34,18 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib" />
+        </NATIVE>
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

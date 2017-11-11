@@ -45,8 +45,26 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
             }
 
             PrintWriter writer = new PrintWriter("Centriods.txt", "UTF-8");
-            for ( Pair p: correctCentroids ) {
-                writer.write(p.toString() + System.lineSeparator());
+            for(int i = 0; i < expectedValues.size(); i++){
+                if(correctCentroids.get(i).getKey().equals(0) && correctCentroids.get(i).getValue().equals(0)){
+                    writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
+                            "  Tatsächliche Koordinate: " + value.get(i) + "  Im Toleranzbereich" + System.lineSeparator());
+                }else{
+                    if(!(correctCentroids.get(i).getKey().equals(0) && correctCentroids.get(i).equals(0))){
+                        writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
+                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
+                    }else if(!correctCentroids.get(i).getValue().equals(0)){
+                        writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
+                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
+
+                    }else if(!correctCentroids.get(i).getValue().equals(0)){
+                        writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
+                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
+                    }
+                }
             }
             writer.close();
         }

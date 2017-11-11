@@ -16,7 +16,7 @@ import java.security.InvalidParameterException;
  */
 public class ImgErodeFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
-    int amountErode = 7;
+    int amountErode = 4;
 
     public ImgErodeFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output, int amount) throws InvalidParameterException {
         super(input, output);

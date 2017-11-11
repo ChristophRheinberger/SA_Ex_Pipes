@@ -1,5 +1,5 @@
 
-//package com.code.revisited.concurrent.locks;
+package Exercise2A;
  
 import java.util.HashMap;
 import java.util.Map;
