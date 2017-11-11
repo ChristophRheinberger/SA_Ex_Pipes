@@ -31,9 +31,7 @@ public class AlignedFileSaveSink extends Sink<Line> {
 
     @Override
     public void write(Line value) throws IOException {
-
         BufferedWriter bwAligned = getBw();
-
         if ( value != null) {
             if (value.toString() != null) {
                 bwAligned.write(value.toString());
