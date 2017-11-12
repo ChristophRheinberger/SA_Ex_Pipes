@@ -64,17 +64,17 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
                 } else {
                     if(!(actualCentroids.get(i).getKey().equals(0) && actualCentroids.get(i).equals(0))) {
                         writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
-                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue() + System.lineSeparator());
                     } else if(!actualCentroids.get(i).getValue().equals(0)) {
                         writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
-                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue() + System.lineSeparator());
 
                     } else if(!actualCentroids.get(i).getValue().equals(0)) {
                         writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
-                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                                "  Tatsächliche Koordinate: " + value.get(i) + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue() + System.lineSeparator());
                     }
                 }
             }
