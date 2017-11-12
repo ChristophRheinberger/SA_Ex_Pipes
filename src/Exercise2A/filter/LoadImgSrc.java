@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.nio.CharBuffer;
+import pmp.interfaces.Readable;
 
 /**
  * Created by Christoph on 06.11.2017.
@@ -17,9 +18,10 @@ public class LoadImgSrc extends Source<PlanarImage> {
 
     boolean sent = false;
 
-    public LoadImgSrc(){
-
+    public LoadImgSrc(Readable<PlanarImage> input){
     }
+
+    public LoadImgSrc(){}
 
     public LoadImgSrc (Writeable<PlanarImage> output) {
         super(output);

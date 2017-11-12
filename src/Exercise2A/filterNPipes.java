@@ -57,7 +57,7 @@ public class filterNPipes {
 
             SimplePipe cropPipe = new SimplePipe((Writeable) imgCropFilter);
 
-            LoadImgSrc loadImgSrc = new LoadImgSrc(cropPipe);
+            LoadImgSrc loadImgSrc = new LoadImgSrc((Writeable<PlanarImage>) cropPipe);
 
             loadImgSrc.run();
 
@@ -67,31 +67,31 @@ public class filterNPipes {
 
             SimplePipe cropPipe = new SimplePipe((Readable) loadImgSrc);
 
-            ImgCropFilter imgCropFilter = new ImgCropFilter((Readable) cropPipe);
+            ImgCropFilter imgCropFilter = new ImgCropFilter((Readable<PlanarImage>) cropPipe);
 
             SimplePipe threshPipe = new SimplePipe((Readable) imgCropFilter);
 
-            ImgThreshholdFilter imgThreshholdFilter = new ImgThreshholdFilter((Readable) threshPipe);
+            ImgThreshholdFilter imgThreshholdFilter = new ImgThreshholdFilter((Readable<PlanarImage>) threshPipe);
 
             SimplePipe mediaPipe = new SimplePipe((Readable) imgThreshholdFilter);
 
-            ImgMedianFilter imgMedianFilter = new ImgMedianFilter((Readable) mediaPipe);
+            ImgMedianFilter imgMedianFilter = new ImgMedianFilter((Readable<PlanarImage>) mediaPipe);
 
             SimplePipe eroPipe = new SimplePipe((Readable) imgMedianFilter);
 
-            ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Readable) eroPipe, 5);
+            ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Readable<PlanarImage>) eroPipe, 5);
 
             SimplePipe dilPipe = new SimplePipe((Readable) imgErodeFilter);
 
-            ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Readable) dilPipe, 5);
+            ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Readable<PlanarImage>) dilPipe, 5);
 
             SimplePipe savePipe = new SimplePipe((Readable) imgDilateFilter);
 
-            ImgSaveFilter imgSaveFilter = new ImgSaveFilter((Readable) savePipe);
+            ImgSaveFilter imgSaveFilter = new ImgSaveFilter((Readable<PlanarImage>) savePipe);
 
             SimplePipe calcCentroidPipe = new SimplePipe((Readable) imgSaveFilter);
 
-            FilterCalcCentroids filterCalcCentroids = new FilterCalcCentroids((Readable) calcCentroidPipe);
+            FilterCalcCentroids filterCalcCentroids = new FilterCalcCentroids((Readable<PlanarImage>) calcCentroidPipe);
 
             SimplePipe sinkPipe = new SimplePipe((Readable) filterCalcCentroids);
 
