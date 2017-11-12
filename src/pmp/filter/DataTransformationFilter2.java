@@ -11,9 +11,9 @@ import java.security.InvalidParameterException;
 /**
 * same as DataTransformationFilter1, but with the possibility to output a new object of the same or another type
 * as that of the incoming object
-* 
+*
 * hook method: process(T):S which creates an S from a T
-* 
+*
 * contract: a null entity signals end of stream
 */
 
@@ -37,7 +37,7 @@ public abstract class DataTransformationFilter2<T,S> extends AbstractFilter<T,S>
     public S read() throws StreamCorruptedException, FileNotFoundException {
         T entity = readInput();
         S result = null;
-        if (entity != null) 
+        if (entity != null)
         	result = process(entity);
         if (result == ENDING_SIGNAL)
         	beforeSendingEndingSignal();
@@ -47,19 +47,19 @@ public abstract class DataTransformationFilter2<T,S> extends AbstractFilter<T,S>
 
     public void write(T value) throws IOException {
         S result = null;
-        if (value != null) 
+        if (value != null)
         	result = process(value);
         if (result == ENDING_SIGNAL)
         	beforeSendingEndingSignal();
        writeOutput(result);
     }
-    
+
     /**
      * does the transformation on entity
      * @param entity
      */
     protected abstract S process(T entity) throws FileNotFoundException, StreamCorruptedException;
 
-    
+
 
 }

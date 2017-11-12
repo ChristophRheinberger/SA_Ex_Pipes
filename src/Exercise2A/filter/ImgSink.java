@@ -20,8 +20,9 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
     private int tolerance;
     private int expectedRadius;
 
-    public ImgSink (Readable<ArrayList<Coordinate>> input, int expectedRadius, int tolerance ) throws InvalidParameterException {
+    public ImgSink (Readable<ArrayList<Coordinate>> input, ArrayList<Coordinate> expectedValues,  int expectedRadius, int tolerance ) throws InvalidParameterException {
         super(input);
+        this.expectedValues = expectedValues;
         this.expectedRadius = expectedRadius;
         this.tolerance = tolerance;
     }
@@ -34,7 +35,6 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
 
     public void write(ArrayList<Coordinate> value) throws IOException {
         ArrayList<Pair<Integer, Integer>> actualCentroids = new ArrayList<>();
-
         if (value != null) {
             for (int i = 0; i < value.size(); i++) {
                 if ((value.get(i)._x >= expectedValues.get(i)._x - tolerance && value.get(i)._x <= expectedValues.get(i)._x + tolerance)

@@ -95,7 +95,7 @@ public class filterNPipes {
 
             SimplePipe sinkPipe = new SimplePipe((Readable) filterCalcCentroids);
 
-            ImgSink imgSink = new ImgSink(sinkPipe, Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+            ImgSink imgSink = new ImgSink(sinkPipe, getExpectedCentroids(), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 
             imgSink.run();
 
