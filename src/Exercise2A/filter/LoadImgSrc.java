@@ -17,6 +17,10 @@ public class LoadImgSrc extends Source<PlanarImage> {
 
     boolean sent = false;
 
+    public LoadImgSrc(){
+
+    }
+
     public LoadImgSrc (Writeable<PlanarImage> output) {
         super(output);
     }
