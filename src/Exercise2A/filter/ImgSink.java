@@ -58,23 +58,23 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
             PrintWriter writer = new PrintWriter("Centriods.txt", "UTF-8");
             for(int i = 0; i < expectedValues.size(); i++){
                 if (actualCentroids.get(i).getKey().equals(0) && actualCentroids.get(i).getValue().equals(0)) {
-                    writer.write("Lötstelle " + (i+1) + ": Erwartet Koordinate = " + expectedValues.get(i) +
-                            "  Tatsächliche Koordinate: " + value.get(i) + "  Erwarteter Radius: " + expectedRadius + "  Radius: " + value.get(i)._radius
-                            + "  Im Toleranzbereich"  +  System.lineSeparator());
+                    writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
+                            "  Tatsächliche Koordinate: " + value.get(i) + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                            + "  | Im Toleranzbereich"  +  System.lineSeparator());
                 } else {
                     if(!(actualCentroids.get(i).getKey().equals(0) && actualCentroids.get(i).equals(0))) {
-                        writer.write("Lötstelle " + (i+1) + ": Erwartet Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Radius: " + value.get(i)._radius
-                                + "  Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                        writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
                     } else if(!actualCentroids.get(i).getValue().equals(0)) {
-                        writer.write("Lötstelle " + (i+1) + ": Erwartet Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Radius: " + value.get(i)._radius
-                                + "  Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                        writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
 
                     } else if(!actualCentroids.get(i).getValue().equals(0)) {
-                        writer.write("Lötstelle " + (i+1) + ": Erwartet Koordinate = " + expectedValues.get(i) +
-                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Radius: " + value.get(i)._radius
-                                + "  Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
+                        writer.write("Lötstelle " + (i+1) + ": Erwartete Koordinate = " + expectedValues.get(i) +
+                                "  Tatsächliche Koordinate: " + value.get(i) + " y:" + actualCentroids.get(i).getValue() + "  Erwarteter Radius: " + expectedRadius + "  Tatsächlicher Radius: " + value.get(i)._radius
+                                + "  | Abweichung des Toleranzbereiches: " + "x:" + actualCentroids.get(i).getKey() + System.lineSeparator());
                     }
                 }
             }
