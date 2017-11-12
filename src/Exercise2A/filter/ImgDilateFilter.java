@@ -16,7 +16,7 @@ import java.security.InvalidParameterException;
  */
 public class ImgDilateFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
-    int amountDilate = 4;
+    int amountDilate;
 
     public ImgDilateFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output, int amount) throws InvalidParameterException {
         super(input, output);

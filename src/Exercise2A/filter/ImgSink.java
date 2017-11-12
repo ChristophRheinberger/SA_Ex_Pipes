@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class ImgSink extends Sink<ArrayList<Coordinate>> {
     private ArrayList<Coordinate> expectedValues;
-    private int tolerance = 5;
+    private int tolerance = 6;
 
     public ImgSink (ArrayList<Coordinate> expectedValues, int expectedRadius) {
         this.expectedValues = expectedValues;
@@ -25,7 +25,7 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
         ArrayList<Pair<Integer, Integer>> actualCentroids = new ArrayList<>();
 
         if (value != null) {
-            for (int i = 0; i<value.size(); i++) {
+            for (int i = 0; i < value.size(); i++) {
                 if ((value.get(i)._x >= expectedValues.get(i)._x - tolerance && value.get(i)._x <= expectedValues.get(i)._x + tolerance)
                         && ( value.get(i)._y >= expectedValues.get(i)._y - tolerance && value.get(i)._y <= expectedValues.get(i)._y + tolerance)) {
                     actualCentroids.add(new Pair(0,0));
