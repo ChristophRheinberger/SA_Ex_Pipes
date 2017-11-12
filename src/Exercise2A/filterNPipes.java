@@ -33,11 +33,11 @@ public class filterNPipes {
 
         SimplePipe savePipe = new SimplePipe((Writeable) imgSaveFilter);
 
-        ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Writeable<PlanarImage>) savePipe, 6);
+        ImgDilateFilter imgDilateFilter = new ImgDilateFilter((Writeable<PlanarImage>) savePipe, 5);
 
         SimplePipe dilPipe = new SimplePipe((Writeable) imgDilateFilter);
 
-        ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Writeable<PlanarImage>) dilPipe, 7);
+        ImgErodeFilter imgErodeFilter = new ImgErodeFilter((Writeable<PlanarImage>) dilPipe, 5);
 
         SimplePipe eroPipe = new SimplePipe((Writeable) imgErodeFilter);
 

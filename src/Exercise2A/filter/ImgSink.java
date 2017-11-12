@@ -22,47 +22,47 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
     }
 
     public void write(ArrayList<Coordinate> value) throws IOException {
-        ArrayList<Pair<Integer, Integer>> correctCentroids = new ArrayList<>();
+        ArrayList<Pair<Integer, Integer>> actualCentroids = new ArrayList<>();
 
         if (value != null) {
             for (int i = 0; i<value.size(); i++) {
                 if ((value.get(i)._x >= expectedValues.get(i)._x - tolerance && value.get(i)._x <= expectedValues.get(i)._x + tolerance)
                         && ( value.get(i)._y >= expectedValues.get(i)._y - tolerance && value.get(i)._y <= expectedValues.get(i)._y + tolerance)) {
-                    correctCentroids.add(new Pair(0,0));
+                    actualCentroids.add(new Pair(0,0));
                 } else if (value.get(i)._x < expectedValues.get(i)._x - tolerance && value.get(i)._x > expectedValues.get(i)._x + tolerance) {
                     if (value.get(i)._y >= expectedValues.get(i)._y - tolerance && value.get(i)._y <= expectedValues.get(i)._y + tolerance) {
-                        correctCentroids.add(new Pair(expectedValues.get(i)._x - value.get(i)._x, 0));
+                        actualCentroids.add(new Pair((expectedValues.get(i)._x - value.get(i)._x), 0));
                     } else {
-                        correctCentroids.add(new Pair(expectedValues.get(i)._x - value.get(i)._x, expectedValues.get(i)._y - value.get(i)._y));
+                        actualCentroids.add(new Pair((expectedValues.get(i)._x - value.get(i)._x), (expectedValues.get(i)._y - value.get(i)._y)));
                     }
                 } else {
                     if (value.get(i)._x >= expectedValues.get(i)._x - tolerance && value.get(i)._x <= expectedValues.get(i)._x + tolerance) {
-                        correctCentroids.add(new Pair(0, expectedValues.get(i)._y - value.get(i)._y));
+                        actualCentroids.add(new Pair(0, (expectedValues.get(i)._y - value.get(i)._y)));
                     } else {
-                        correctCentroids.add(new Pair(expectedValues.get(i)._x - value.get(i)._x, expectedValues.get(i)._y - value.get(i)._y));
+                        actualCentroids.add(new Pair((expectedValues.get(i)._x - value.get(i)._x), (expectedValues.get(i)._y - value.get(i)._y)));
                     }
                 }
             }
 
             PrintWriter writer = new PrintWriter("Centriods.txt", "UTF-8");
             for(int i = 0; i < expectedValues.size(); i++){
-                if(correctCentroids.get(i).getKey().equals(0) && correctCentroids.get(i).getValue().equals(0)){
+                if (actualCentroids.get(i).getKey().equals(0) && actualCentroids.get(i).getValue().equals(0)) {
                     writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
-                            "  Tatsächliche Koordinate: " + value.get(i) + "  Im Toleranzbereich" + System.lineSeparator());
-                }else{
-                    if(!(correctCentroids.get(i).getKey().equals(0) && correctCentroids.get(i).equals(0))){
+                            "  Tatsächliche Koordinate: " + value.get(i) + "  Im Toleranzbereich"  + " Radius: " + value.get(i)._radius +  System.lineSeparator());
+                } else {
+                    if(!(actualCentroids.get(i).getKey().equals(0) && actualCentroids.get(i).equals(0))) {
                         writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
                                 "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
-                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
-                    }else if(!correctCentroids.get(i).getValue().equals(0)){
+                                "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue()  + " Radius: " + value.get(i)._radius + System.lineSeparator());
+                    } else if(!actualCentroids.get(i).getValue().equals(0)) {
                         writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
                                 "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
-                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
+                                "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue()  + " Radius: " + value.get(i)._radius + System.lineSeparator());
 
-                    }else if(!correctCentroids.get(i).getValue().equals(0)){
+                    } else if(!actualCentroids.get(i).getValue().equals(0)) {
                         writer.write("Lötstelle " + i + ": Erwartet Koordinate = " + expectedValues.get(i) +
                                 "  Tatsächliche Koordinate: " + value.get(i) + "  Abweichung des Toleranzbereiches: " +
-                                "x:" + correctCentroids.get(i).getKey() + " y:" + correctCentroids.get(i).getValue() + System.lineSeparator());
+                                "x:" + actualCentroids.get(i).getKey() + " y:" + actualCentroids.get(i).getValue()  + " Radius: " + value.get(i)._radius + System.lineSeparator());
                     }
                 }
             }

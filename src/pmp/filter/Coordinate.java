@@ -5,11 +5,19 @@ public class Coordinate {
 
 	public final int _x;
 	public final int _y;
+	public final int _radius;
 	
 	public Coordinate(int x, int y){
 		_x = x;
 		_y = y;
+		_radius = 0;
 	}
+
+	public Coordinate(int x, int y, int radius) {
+	    _x = x;
+	    _y = y;
+        _radius = radius;
+    }
 	
     @Override
     public boolean equals(Object o) {
