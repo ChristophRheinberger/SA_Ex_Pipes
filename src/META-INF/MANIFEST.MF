@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: jai_core.jar mlibwrapper_jai.jar jai_codec.jar
+Main-Class: Exercise2A.filterNPipes
+
