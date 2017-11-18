@@ -17,20 +17,32 @@ import java.nio.CharBuffer;
 public class LoadImgSrc extends Source<PlanarImage> {
 
     boolean sent = false;
+    String imgUrl;
 
     public LoadImgSrc(Readable<PlanarImage> input){
+        this.imgUrl = imgUrl;
     }
 
     public LoadImgSrc(){}
-
-    public LoadImgSrc (Writeable<PlanarImage> output) {
-        super(output);
-    }
 
     @Override
     public PlanarImage read() throws StreamCorruptedException, FileNotFoundException {
         if(!sent) {
             PlanarImage image = JAI.create("fileload", "loetstellen.jpg");
+            sent = true;
+            return image;
+        } else {
+            return null;
+        }
+    }
+
+    public LoadImgSrc (Writeable<PlanarImage> output) {
+        super(output);
+    }
+
+    public PlanarImage read(String imgUrl) throws StreamCorruptedException, FileNotFoundException {
+        if(!sent) {
+            PlanarImage image = JAI.create("fileload", imgUrl);
             sent = true;
             return image;
         } else {
