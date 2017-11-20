@@ -22,11 +22,11 @@ public class PlanarImageEvent extends EventObject {
         this._image = image;
     }
 
-    public PlanarImage get_image() {
+    public PlanarImage getImage() {
         return _image;
     }
 
-    public void set_image(PlanarImage _image) {
+    public void setImage(PlanarImage _image) {
         this._image = _image;
     }
 }

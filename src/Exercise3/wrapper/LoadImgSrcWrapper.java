@@ -14,7 +14,7 @@ import java.util.Vector;
 /**
  * Created by Christoph on 13.11.2017.
  */
-public class LoadImgSrcWrapper implements Runnable, Writeable<PlanarImage> {
+public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
 
     private LoadImgSrc imgSrc;
     private PlanarImage image;
@@ -22,17 +22,13 @@ public class LoadImgSrcWrapper implements Runnable, Writeable<PlanarImage> {
     private Vector listeners;
 
     public LoadImgSrcWrapper () {
+        listeners = new Vector();
         imgSrc = new LoadImgSrc(this);
     }
 
     @Override
     public void write(PlanarImage value) throws IOException {
 
-    }
-
-    @Override
-    public void run() {
-        imageChangedEvent();
     }
 
     public synchronized void imageChangedEvent() {
@@ -52,11 +48,11 @@ public class LoadImgSrcWrapper implements Runnable, Writeable<PlanarImage> {
         }
     }
 
-    public void addImageListener(PlanarImageListener pl) {
+    public void addPlanarImageListener(PlanarImageListener pl) {
         listeners.add(pl);
     }
 
-    public void removeImageListener(PlanarImageListener pl) {
+    public void removePlanarImageListener(PlanarImageListener pl) {
         listeners.remove(pl);
     }
 
@@ -66,5 +62,6 @@ public class LoadImgSrcWrapper implements Runnable, Writeable<PlanarImage> {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+        imageChangedEvent();
     }
 }

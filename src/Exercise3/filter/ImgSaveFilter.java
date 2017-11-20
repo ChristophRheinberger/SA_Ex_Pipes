@@ -28,7 +28,7 @@ public class ImgSaveFilter extends DataTransformationFilter1<PlanarImage> {
     }
 
     @Override
-    protected void process(PlanarImage entity) {
+    public void process(PlanarImage entity) {
         // Save Image to FIle
         File myNewPNGFile = new File("loetstellen_punkte.jpg");
 

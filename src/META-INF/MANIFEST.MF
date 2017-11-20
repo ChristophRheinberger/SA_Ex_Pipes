@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
 
-Name: LoadImgSrcWrapper.class
+Name: Exercise3/wrapper/LoadImgSrcWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgSaveWrapper.class
 Java-Bean: True

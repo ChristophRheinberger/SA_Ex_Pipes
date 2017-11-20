@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pmp-beans">
+    <output-path>$PROJECT_DIR$/out/artifacts/pmp_beans</output-path>
+    <root id="archive" name="pmp-beans.jar">
+      <element id="module-output" name="SA_Ex_1" />
+      <element id="extracted-dir" path="C:/jai-1_1_2_01/lib/jai_core.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jai_core" />
+    </root>
+  </artifact>
+</component>
