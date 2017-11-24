@@ -28,8 +28,8 @@ public class ImgSinkWrapper implements ArrayListListener, Serializable {
     }
 
     @Override
-    public void coordinatesChangedEvent(ArrayCooridinatesEvent image) {
-        this.coordinates = coordinates;
+    public void coordinatesChangedEvent(ArrayCooridinatesEvent cooridinatesEvent) {
+        this.coordinates = cooridinatesEvent.getCoordinates();
         try {
             imgSink.write(coordinates);
         } catch (IOException e) {

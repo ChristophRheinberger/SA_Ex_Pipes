@@ -20,6 +20,7 @@ import java.util.Vector;
 public class FilterCalcCentroidsWrapper implements Writeable<ArrayList<Coordinate>>, PlanarImageListener, Serializable {
     private FilterCalcCentroids filterCalcCentroids;
     private ArrayList<Coordinate> coordinates;
+    private PlanarImage image;
     private Vector listeners;
 
     public FilterCalcCentroidsWrapper() {
@@ -29,7 +30,8 @@ public class FilterCalcCentroidsWrapper implements Writeable<ArrayList<Coordinat
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.coordinates = filterCalcCentroids.process(image.getImage());
+        this.image = image.getImage();
+        this.coordinates = filterCalcCentroids.process(this.image);
 
         ArrayCooridinatesEvent arrayCooridinatesEvent = new ArrayCooridinatesEvent(this, coordinates);
         for (Object el : listeners) {
@@ -38,11 +40,11 @@ public class FilterCalcCentroidsWrapper implements Writeable<ArrayList<Coordinat
         }
     }
 
-    public void addPlanarImageListener(PlanarImageListener pl) {
+    public void addArrayListListener(ArrayListListener pl) {
         listeners.add(pl);
     }
 
-    public void removePlanarImageListener(PlanarImageListener pl) {
+    public void removeArrayListListener(ArrayListListener pl) {
         listeners.remove(pl);
     }
 

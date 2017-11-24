@@ -13,11 +13,11 @@ public class ArrayCooridinatesEvent extends EventObject {
         this._coordinates = coordinateArrayList;
     }
 
-    public ArrayList<Coordinate> getImage() {
+    public ArrayList<Coordinate> getCoordinates() {
         return _coordinates;
     }
 
-    public void setImage(ArrayList<Coordinate> _coordinates) {
+    public void setCoordinates(ArrayList<Coordinate> _coordinates) {
         this._coordinates = _coordinates;
     }
 }

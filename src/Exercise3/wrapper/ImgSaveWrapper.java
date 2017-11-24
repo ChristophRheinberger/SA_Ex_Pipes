@@ -28,7 +28,7 @@ public class ImgSaveWrapper implements Writeable<PlanarImage>, PlanarImageListen
     public void imageChangedEvent(PlanarImageEvent image) {
         imgSaveFilter.process(image.getImage());
 
-        PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
+        PlanarImageEvent imageEvent = new PlanarImageEvent(this, image.getImage());
         for (Object el : listeners) {
             PlanarImageListener imageListener = (PlanarImageListener) el;
             imageListener.imageChangedEvent(imageEvent);
