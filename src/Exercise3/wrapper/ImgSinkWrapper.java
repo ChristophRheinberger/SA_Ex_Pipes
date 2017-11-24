@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class ImgSinkWrapper implements Writeable<ArrayList<Coordinate>>, ArrayListListener, Serializable {
+public class ImgSinkWrapper implements ArrayListListener, Serializable {
 
     private int tolerance;
     private int expectedRadius;
@@ -60,11 +60,6 @@ public class ImgSinkWrapper implements Writeable<ArrayList<Coordinate>>, ArrayLi
         coordinates.add(new Coordinate(330, 81));
         coordinates.add(new Coordinate(396, 81));
         return coordinates;
-    }
-
-    @Override
-    public void write(ArrayList<Coordinate> value) throws IOException {
-
     }
 
     public void setTolerance(int tolerance) {
