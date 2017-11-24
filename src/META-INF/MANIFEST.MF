@@ -20,3 +20,9 @@ Java-Bean: True
 
 Name: Exercise3/wrapper/ImgCropFilterWrapper.class
 Java-Bean: True
+
+Name: Exercise3/wrapper/FilterCalcCentroidsWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgSinkWrapper.class
+Java-Bean: True
