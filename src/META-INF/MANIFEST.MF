@@ -5,3 +5,18 @@ Java-Bean: True
 
 Name: Exercise3/wrapper/ImgSaveWrapper.class
 Java-Bean: True
+
+Name: Exercise3/wrapper/ImgTreshholdFilterWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgMedianFilterWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgErodeFilterWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgDilateFilterWrapper.class
+Java-Bean: True
+
+Name: Exercise3/wrapper/ImgCropFilterWrapper.class
+Java-Bean: True
