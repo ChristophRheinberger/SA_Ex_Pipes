@@ -15,10 +15,10 @@ import java.util.Vector;
 
 public class ImgSinkWrapper implements ArrayListListener, Serializable {
 
-    private int tolerance;
-    private int expectedRadius;
+    private int tolerance =5;
+    private int expectedRadius = 10;
     private ImgSink imgSink;
-    private ArrayList<Coordinate> coordinates;
+    private ArrayList<Coordinate> coordinates = getExpectedCentroids();
     private Vector listeners;
 
     public ImgSinkWrapper() {

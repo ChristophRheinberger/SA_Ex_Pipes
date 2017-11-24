@@ -18,7 +18,7 @@ public class ImgDilateFilterWrapper implements Writeable<PlanarImage>, PlanarIma
     private ImgDilateFilter imgDilateFilter;
     private PlanarImage image;
     private Vector listeners;
-    private Integer amount;
+    private Integer amount = 5;
 
     public ImgDilateFilterWrapper() {
         this.imgDilateFilter = new ImgDilateFilter(this, amount);
