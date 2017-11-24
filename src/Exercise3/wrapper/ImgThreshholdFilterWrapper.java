@@ -26,8 +26,7 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        imgThresholdFilter.process(image.getImage());
+        this.image = imgThresholdFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {

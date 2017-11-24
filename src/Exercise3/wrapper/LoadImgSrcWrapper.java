@@ -45,10 +45,9 @@ public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
 
             PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
 
-            for (Object el : listeners) {
-                PlanarImageListener imageListener = (PlanarImageListener) el;
-                imageListener.imageChangedEvent(imageEvent);
-            }
+            PlanarImageListener imageListener = (PlanarImageListener) listeners.get(0);
+            imageListener.imageChangedEvent(imageEvent);
+
             urlSet = false;
         }
     }

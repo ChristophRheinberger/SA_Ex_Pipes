@@ -27,8 +27,7 @@ public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImag
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        imgErodeFilter.process(image.getImage());
+        this.image = imgErodeFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {

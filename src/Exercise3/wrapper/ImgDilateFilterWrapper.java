@@ -27,8 +27,7 @@ public class ImgDilateFilterWrapper implements Writeable<PlanarImage>, PlanarIma
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        imgDilateFilter.process(image.getImage());
+        this.image = imgDilateFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {

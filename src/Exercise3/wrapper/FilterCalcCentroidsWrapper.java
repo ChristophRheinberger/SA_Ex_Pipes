@@ -1,7 +1,9 @@
 package Exercise3.wrapper;
 
 import Exercise3.filter.FilterCalcCentroids;
+import Exercise3.wrapper.events.ArrayCooridinatesEvent;
 import Exercise3.wrapper.events.PlanarImageEvent;
+import Exercise3.wrapper.interfaces.ArrayListListener;
 import Exercise3.wrapper.interfaces.PlanarImageListener;
 import pmp.filter.Coordinate;
 import pmp.interfaces.Writeable;
@@ -17,7 +19,7 @@ import java.util.Vector;
  */
 public class FilterCalcCentroidsWrapper implements Writeable<ArrayList<Coordinate>>, PlanarImageListener, Serializable {
     private FilterCalcCentroids filterCalcCentroids;
-    private PlanarImage image;
+    private ArrayList<Coordinate> coordinates;
     private Vector listeners;
 
     public FilterCalcCentroidsWrapper() {
@@ -27,13 +29,12 @@ public class FilterCalcCentroidsWrapper implements Writeable<ArrayList<Coordinat
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        filterCalcCentroids.process(image.getImage());
+        this.coordinates = filterCalcCentroids.process(image.getImage());
 
-        PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
+        ArrayCooridinatesEvent arrayCooridinatesEvent = new ArrayCooridinatesEvent(this, coordinates);
         for (Object el : listeners) {
-            PlanarImageListener imageListener = (PlanarImageListener) el;
-            imageListener.imageChangedEvent(imageEvent);
+            ArrayListListener arrayListListener = (ArrayListListener) el;
+            arrayListListener.coordinatesChangedEvent(arrayCooridinatesEvent);
         }
     }
 

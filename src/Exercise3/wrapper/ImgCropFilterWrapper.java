@@ -26,8 +26,7 @@ public class ImgCropFilterWrapper implements Writeable<PlanarImage>, PlanarImage
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        imgCropFilter.process(image.getImage());
+        this.image = imgCropFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {

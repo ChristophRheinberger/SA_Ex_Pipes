@@ -26,8 +26,7 @@ public class ImgMedianFilterWrapper implements Writeable<PlanarImage>, PlanarIma
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
-        this.image = image.getImage();
-        imgMedianFilter.process(image.getImage());
+        this.image = imgMedianFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {
