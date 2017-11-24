@@ -34,7 +34,7 @@ public class ImgDilateFilter extends DataTransformationFilter2<PlanarImage, Plan
     }
 
     @Override
-    protected PlanarImage process(PlanarImage entity) {
+    public PlanarImage process(PlanarImage entity) {
         PlanarImage newEntity = entity;
         for (int i = 0; i < amountDilate; i++) {
             newEntity = DilateDescriptor.create(newEntity, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);

@@ -34,7 +34,7 @@ public class ImgErodeFilter extends DataTransformationFilter2<PlanarImage, Plana
     }
 
     @Override
-    protected PlanarImage process(PlanarImage entity) {
+    public PlanarImage process(PlanarImage entity) {
         PlanarImage newEntity = entity;
         for (int i = 0; i < amountErode; i++) {
             newEntity = ErodeDescriptor.create(newEntity, KernelJAI.ERROR_FILTER_FLOYD_STEINBERG, null);

@@ -1,6 +1,6 @@
 package Exercise3.wrapper;
 
-import Exercise3.filter.ImgSaveFilter;
+import Exercise3.filter.ImgErodeFilter;
 import Exercise3.wrapper.events.PlanarImageEvent;
 import Exercise3.wrapper.interfaces.PlanarImageListener;
 import pmp.interfaces.Writeable;
@@ -11,23 +11,24 @@ import java.io.Serializable;
 import java.util.Vector;
 
 /**
- * Created by Christoph on 20.11.2017.
+ * Created by Christoph on 24.11.2017.
  */
-public class ImgSaveWrapper implements Writeable<PlanarImage>, PlanarImageListener, Serializable {
+public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImageListener, Serializable {
 
-    private ImgSaveFilter imgSaveFilter;
+    private ImgErodeFilter imgErodeFilter;
     private PlanarImage image;
     private Vector listeners;
+    private Integer amount;
 
-    public ImgSaveWrapper () {
-        listeners = new Vector();
-        this.imgSaveFilter = new ImgSaveFilter(this);
+    public ImgErodeFilterWrapper() {
+        this.imgErodeFilter = new ImgErodeFilter(this, amount);
+        this.listeners = new Vector();
     }
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
         this.image = image.getImage();
-        imgSaveFilter.process(image.getImage());
+        imgErodeFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
         for (Object el : listeners) {
@@ -44,6 +45,16 @@ public class ImgSaveWrapper implements Writeable<PlanarImage>, PlanarImageListen
         listeners.remove(pl);
     }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
     @Override
-    public void write(PlanarImage value) throws IOException { }
+    public void write(PlanarImage value) throws IOException {
+
+    }
 }
