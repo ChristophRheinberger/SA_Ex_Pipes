@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 /**
  * Created by Christoph on 06.11.2017.
  */
-public class ImgDilateFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
+public class ImgCropFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
     public ImgCropFilter(Readable<PlanarImage> input, Writeable<PlanarImage> output) throws InvalidParameterException {
         super(input, output);
@@ -33,7 +33,7 @@ public class ImgDilateFilter extends DataTransformationFilter2<PlanarImage, Plan
     }
 
     @Override
-    public PlanarImage process(PlanarImage entity) {
+   public PlanarImage process(PlanarImage entity) {
         int xOffset = 50;
         int yOffset = 50;
 

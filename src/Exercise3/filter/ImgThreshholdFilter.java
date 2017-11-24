@@ -27,7 +27,7 @@ public class ImgThreshholdFilter extends DataTransformationFilter2<PlanarImage, 
     }
 
     @Override
-    protected PlanarImage process(PlanarImage entity) {
+    public PlanarImage process(PlanarImage entity) {
         entity.setProperty("offsetX", 50);
         entity.setProperty("offsetY", 50);
 
