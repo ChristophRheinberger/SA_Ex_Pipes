@@ -8,13 +8,14 @@ import pmp.interfaces.Writeable;
 import javax.media.jai.PlanarImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import java.util.Vector;
 
 /**
  * Created by Christoph on 13.11.2017.
  */
-public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
+public class LoadImgSrcWrapper implements Serializable, Writeable<PlanarImage> {
 
     private LoadImgSrc imgSrc;
     private PlanarImage image;

@@ -8,11 +8,12 @@ import javax.media.jai.PlanarImage;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Created by Clemens on 26.11.2017.
  */
-public class DisplayWrapper extends Canvas implements Writeable<PlanarImage>, PlanarImageListener {
+public class DisplayWrapper extends Canvas implements Serializable, Writeable<PlanarImage>, PlanarImageListener {
 
     private BufferedImage img;
 
