@@ -34,21 +34,19 @@ public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
 
     public synchronized void imageChangedEvent() {
 
-        if(urlSet) {
-            try {
-                this.image = imgSrc.read(imgUrl);
-            } catch (StreamCorruptedException e) {
-                e.printStackTrace();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
-
-            PlanarImageListener imageListener = (PlanarImageListener) listeners.get(0);
-            imageListener.imageChangedEvent(imageEvent);
-            urlSet = false;
+        try {
+            this.image = imgSrc.read(imgUrl);
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+
+        PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
+
+        PlanarImageListener imageListener = (PlanarImageListener) listeners.get(0);
+        imageListener.imageChangedEvent(imageEvent);
+        urlSet = false;
     }
 
     public void addPlanarImageListener(PlanarImageListener pl) {
@@ -65,7 +63,6 @@ public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-        urlSet = true;
         imageChangedEvent();
     }
 }

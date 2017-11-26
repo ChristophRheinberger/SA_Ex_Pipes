@@ -64,6 +64,7 @@ public class ImgSinkWrapper implements ArrayListListener, Serializable {
 
     public void setTolerance(int tolerance) {
         this.tolerance = tolerance;
+        coordinatesChangedEvent(new ArrayCooridinatesEvent(this, this.coordinates));
     }
 
     public int getTolerance() {
