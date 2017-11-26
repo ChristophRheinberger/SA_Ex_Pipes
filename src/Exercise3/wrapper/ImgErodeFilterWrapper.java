@@ -19,9 +19,10 @@ public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImag
     private PlanarImage saveImage;
     private PlanarImage image;
     private Vector listeners;
-    private Integer amount = 5;
+    private Integer amount;
 
     public ImgErodeFilterWrapper() {
+        this.amount = 5;
         this.imgErodeFilter = new ImgErodeFilter(this, amount);
         this.listeners = new Vector();
     }
