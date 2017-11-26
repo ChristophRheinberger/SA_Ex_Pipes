@@ -94,7 +94,15 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
         this.expectedRadius = radius;
     }
 
+    public int getExpectedRadius () {
+        return this.expectedRadius;
+    }
+
     public void setTolerance (int tolerance) {
         this.tolerance = tolerance;
+    }
+
+    public int getTolerance() {
+        return this.tolerance;
     }
 }

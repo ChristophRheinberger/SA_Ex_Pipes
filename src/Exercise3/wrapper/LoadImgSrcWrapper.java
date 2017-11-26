@@ -20,7 +20,6 @@ public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
     private PlanarImage image;
     private String imgUrl = "loetstellen.jpg";
     private Vector listeners;
-    private Boolean urlSet = false;
 
     public LoadImgSrcWrapper () {
         listeners = new Vector();
@@ -43,10 +42,10 @@ public class LoadImgSrcWrapper implements Writeable<PlanarImage> {
         }
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
-
-        PlanarImageListener imageListener = (PlanarImageListener) listeners.get(0);
-        imageListener.imageChangedEvent(imageEvent);
-        urlSet = false;
+        for ( Object pl : listeners ) {
+            PlanarImageListener imageListener = (PlanarImageListener) pl;
+            imageListener.imageChangedEvent(imageEvent);
+        }
     }
 
     public void addPlanarImageListener(PlanarImageListener pl) {
