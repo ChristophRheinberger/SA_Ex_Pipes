@@ -16,6 +16,10 @@ public class DisplayWrapper extends Canvas implements Writeable<PlanarImage>, Pl
 
     private BufferedImage img;
 
+    public DisplayWrapper(){
+        setSize(438, 316);
+    }
+
     @Override
     public void write(PlanarImage value) throws IOException {
     }
@@ -31,6 +35,7 @@ public class DisplayWrapper extends Canvas implements Writeable<PlanarImage>, Pl
         if (img != null) {
             int x = (getWidth() - img.getWidth()) / 2;
             int y = (getHeight() - img.getHeight()) / 2;
+            setSize(img.getWidth(), img.getHeight());
             g.drawImage(img, x, y, this);
         }
     }
