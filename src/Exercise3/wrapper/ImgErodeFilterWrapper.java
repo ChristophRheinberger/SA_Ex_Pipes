@@ -16,6 +16,7 @@ import java.util.Vector;
 public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImageListener, Serializable {
 
     private ImgErodeFilter imgErodeFilter;
+    private PlanarImage saveImage;
     private PlanarImage image;
     private Vector listeners;
     private Integer amount = 5;
@@ -27,6 +28,7 @@ public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImag
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
+        this.saveImage = image.getImage();
         this.image = imgErodeFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);

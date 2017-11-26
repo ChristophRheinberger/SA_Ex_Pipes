@@ -89,4 +89,12 @@ public class ImgSink extends Sink<ArrayList<Coordinate>> {
     public ArrayList<Coordinate> read() throws StreamCorruptedException, FileNotFoundException {
         return null;
     }
+
+    public void setExpectedRadius (int radius) {
+        this.expectedRadius = radius;
+    }
+
+    public void setTolerance (int tolerance) {
+        this.tolerance = tolerance;
+    }
 }
