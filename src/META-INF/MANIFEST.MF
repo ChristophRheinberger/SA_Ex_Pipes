@@ -26,3 +26,6 @@ Java-Bean: True
 
 Name: Exercise3/wrapper/ImgSinkWrapper.class
 Java-Bean: True
+
+Name: Exercise3/wrapper/DisplayWrapper.class
+Java-Bean: True
