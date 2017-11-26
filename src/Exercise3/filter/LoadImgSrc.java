@@ -41,13 +41,8 @@ public class LoadImgSrc extends Source<PlanarImage> {
     }
 
     public PlanarImage read(String imgUrl) throws StreamCorruptedException, FileNotFoundException {
-        if(!sent) {
-            PlanarImage image = JAI.create("fileload", imgUrl);
-            sent = true;
-            return image;
-        } else {
-            return null;
-        }
+        PlanarImage image = JAI.create("fileload", imgUrl);
+        return image;
     }
 
     @Override
