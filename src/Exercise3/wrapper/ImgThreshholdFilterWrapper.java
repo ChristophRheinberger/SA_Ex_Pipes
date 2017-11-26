@@ -16,6 +16,7 @@ import java.util.Vector;
 public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, PlanarImageListener, Serializable {
 
     private ImgThreshholdFilter imgThresholdFilter;
+    private PlanarImage saveImage;
     private PlanarImage image;
     private Vector listeners;
 
@@ -26,6 +27,7 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
 
     @Override
     public void imageChangedEvent(PlanarImageEvent image) {
+        this.saveImage = image.getImage();
         this.image = imgThresholdFilter.process(image.getImage());
 
         PlanarImageEvent imageEvent = new PlanarImageEvent(this, this.image);
@@ -45,6 +47,9 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
 
     public void setLow(int low) {
         this.imgThresholdFilter.setLow(low);
+        if(this.image != null) {
+            imageChangedEvent(new PlanarImageEvent(this, saveImage));
+        }
     }
 
     public int getLow() {
@@ -53,6 +58,9 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
 
     public void setHigh(int high) {
         this.imgThresholdFilter.setHigh(high);
+        if (this.saveImage != null) {
+            imageChangedEvent(new PlanarImageEvent(this, saveImage));
+        }
     }
 
     public int getHigh() {
@@ -61,6 +69,9 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
 
     public void setTarget(int target) {
         this.imgThresholdFilter.setTarget(target);
+        if (saveImage != null) {
+            imageChangedEvent(new PlanarImageEvent(this, saveImage));
+        }
     }
 
     public int getTarget() {

@@ -66,7 +66,9 @@ public class ImgSinkWrapper implements ArrayListListener, Serializable {
     public void setTolerance(int tolerance) {
         this.tolerance = tolerance;
         this.imgSink.setTolerance(tolerance);
-        coordinatesChangedEvent(new ArrayCooridinatesEvent(this, this.coordinates));
+        if (this.coordinates != null) {
+            coordinatesChangedEvent(new ArrayCooridinatesEvent(this, this.coordinates));
+        }
     }
 
     public int getTolerance() {
@@ -76,7 +78,9 @@ public class ImgSinkWrapper implements ArrayListListener, Serializable {
     public void setExpectedRadius(int expectedRadius) {
         this.expectedRadius = expectedRadius;
         this.imgSink.setExpectedRadius(expectedRadius);
-        coordinatesChangedEvent(new ArrayCooridinatesEvent(this, this.coordinates));
+        if (this.coordinates != null) {
+            coordinatesChangedEvent(new ArrayCooridinatesEvent(this, this.coordinates));
+        }
     }
 
     public int getExpectedRadius() {
