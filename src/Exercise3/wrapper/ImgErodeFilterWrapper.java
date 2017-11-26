@@ -48,7 +48,7 @@ public class ImgErodeFilterWrapper implements Writeable<PlanarImage>, PlanarImag
 
     public void setAmount(int amount) {
         this.amount = amount;
-        imageChangedEvent(new PlanarImageEvent(this, this.image));
+        imageChangedEvent(new PlanarImageEvent(this, saveImage));
     }
 
     public int getAmount() {
