@@ -43,6 +43,30 @@ public class ImgThreshholdFilterWrapper implements Writeable<PlanarImage>, Plana
         listeners.remove(pl);
     }
 
+    public void setLow(int low) {
+        this.imgThresholdFilter.setLow(low);
+    }
+
+    public int getLow() {
+        return imgThresholdFilter.getLow();
+    }
+
+    public void setHigh(int high) {
+        this.imgThresholdFilter.setHigh(high);
+    }
+
+    public int getHigh() {
+        return this.imgThresholdFilter.getHigh();
+    }
+
+    public void setTarget(int target) {
+        this.imgThresholdFilter.setTarget(target);
+    }
+
+    public int getTarget() {
+        return this.imgThresholdFilter.getTarget();
+    }
+
     @Override
     public void write(PlanarImage value) throws IOException {
 
