@@ -6,7 +6,6 @@
       <element id="extracted-dir" path="$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib/jai_core.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib/jai_codec.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/jai/jai-1_1_2_01/lib/mlibwrapper_jai.jar" path-in-jar="/" />
-      <element id="library" level="project" name="jai_core1" />
       <element id="library" level="project" name="jai_core" />
     </root>
   </artifact>

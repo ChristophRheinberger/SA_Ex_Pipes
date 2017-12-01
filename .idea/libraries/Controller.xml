@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="jai_core1">
+  <library name="Controller">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Documents/IdeaLibs/jai_core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/.idea/libraries/Controller.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
