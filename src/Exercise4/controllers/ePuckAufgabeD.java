@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * Created by Christoph on 27.11.2017.
  */
-public class ePuckAufgabeC extends DifferentialWheels {
+public class ePuckAufgabeD extends DifferentialWheels {
 
     private static int TIME_STEP = 15;
 
@@ -30,7 +30,7 @@ public class ePuckAufgabeC extends DifferentialWheels {
     /**
      * Constructor
      */
-    public ePuckAufgabeC() {
+    public ePuckAufgabeD() {
         super();
 
         // get distance sensors and save them in array
