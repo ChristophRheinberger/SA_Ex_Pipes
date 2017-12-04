@@ -21,7 +21,7 @@ public class ePuckAufgabeC extends DifferentialWheels {
     private static int S_FRONT_LEFT = 0; // Sensor front left
     private static int S_FRONT_RIGHT = 1; // Sensor front right
     private static int MIN_SPEED = 0; // min. motor speed
-    private static int MAX_SPEED = 500; // max. motor speed
+    private static int MAX_SPEED = 1000; // max. motor speed
 
 
     private DistanceSensor[] sensors; // Array with all distance sensors
