@@ -21,7 +21,7 @@ public class ePuckAufgabeC extends DifferentialWheels {
     private static int S_FRONT_LEFT = 0; // Sensor front left
     private static int S_FRONT_RIGHT = 1; // Sensor front right
     private static int MIN_SPEED = 0; // min. motor speed
-    private static int MAX_SPEED = 1000; // max. motor speed
+    private static int MAX_SPEED = 500; // max. motor speed
 
 
     private DistanceSensor[] sensors; // Array with all distance sensors
@@ -81,12 +81,22 @@ public class ePuckAufgabeC extends DifferentialWheels {
                     stop();
                 }
 
-                //TODO  check when the ball is touched
-                //      pushingBall = true;
-
+                if ((sensors[S_FRONT_LEFT].getValue() >= 150) && (sensors[S_FRONT_RIGHT].getValue() >= 150)) {
+                    pushingBall = true;
+                }
 
             } else {
-                //TODO  balancing the ball
+                System.out.println("Left: " + sensors[S_FRONT_LEFT].getValue());
+                System.out.println("Right: " + sensors[S_FRONT_RIGHT].getValue());
+                if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() <= 2000)) {
+                    driveForward();
+                } else if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() >= 2000)) {
+                    driveRight();
+                } else if ((sensors[S_FRONT_RIGHT].getValue() <= 2000) && (sensors[S_FRONT_LEFT].getValue() >= 2000)) {
+                    driveLeft();
+                } else {
+                    stop();
+                }
             }
         }
     }
