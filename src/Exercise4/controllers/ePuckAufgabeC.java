@@ -57,7 +57,6 @@ public class ePuckAufgabeC extends DifferentialWheels {
         while (step(TIME_STEP) != -1) {
 
             int red = 0;
-            int green = 0;
 
             image = camera.getImage();
             width = camera.getWidth();
@@ -65,14 +64,18 @@ public class ePuckAufgabeC extends DifferentialWheels {
 
             if ( pushingBall == false ) {
 
-                for (int i = width / 3; i < 2 * width / 3; i++) {
-                    for (int j = height / 2; j < 3 * height / 4; j++) {
-                        red = red + Camera.imageGetRed(image, width, i, j);
-                        green = green + Camera.imageGetGreen(image, width, i, j);
+                int[] imagePixels = camera.getImage();
+                for (int i=0; i < image.length; i++) {
+                    int pixel = image[i];
+                    int r = Camera.pixelGetRed(pixel);
+                    int g = Camera.pixelGetGreen(pixel);
+                    int b = Camera.pixelGetBlue(pixel);
+                    if (isRed(r,g,b)) {
+                        red++;
                     }
                 }
 
-                if ((red > 1.3d * green)) {
+                if (red > 5) {
                     driveForward();
                 } else {
                     stop();
@@ -85,8 +88,17 @@ public class ePuckAufgabeC extends DifferentialWheels {
             } else {
                 //TODO  balancing the ball
             }
+        }
+    }
 
-
+    private boolean isRed(int r, int g, int b) {
+        if ( g < 10 && b < 10 ) {
+            if ( r > 50 )
+                return true;
+            else
+                return false;
+        } else {
+            return false;
         }
     }
 
