@@ -52,6 +52,7 @@ public class ePuckAufgabeC extends DifferentialWheels {
         int[] image;
         int width;
         int height;
+        boolean pushingBall = false;
 
         while (step(TIME_STEP) != -1) {
 
@@ -62,16 +63,30 @@ public class ePuckAufgabeC extends DifferentialWheels {
             width = camera.getWidth();
             height = camera.getHeight();
 
-            for (int i = width/3; i < 2*width/3; i++) {
-                for (int j = height/2; j < 3*height/4; j++) {
-                    red = red + Camera.imageGetRed(image, width, i, j);
-                    green = green + Camera.imageGetGreen(image, width, i, j);
+            if ( pushingBall == false ) {
+
+                for (int i = width / 3; i < 2 * width / 3; i++) {
+                    for (int j = height / 2; j < 3 * height / 4; j++) {
+                        red = red + Camera.imageGetRed(image, width, i, j);
+                        green = green + Camera.imageGetGreen(image, width, i, j);
+                    }
                 }
+
+                if ((red > 1.3d * green)) {
+                    driveForward();
+                } else {
+                    stop();
+                }
+
+                //TODO  check when the ball is touched
+                //      pushingBall = true;
+
+
+            } else {
+                //TODO  balancing the ball
             }
 
-            if ((red > 1.3d*green)) {
-                System.out.println("I found the red ball!" + red + " " + green);
-            }
+
         }
     }
 
