@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class ePuckAufgabeD extends DifferentialWheels {
 
-    private static int TIME_STEP = 15;
+    private static int TIME_STEP = 10;
 
     private static int MAX_SENSOR_VALUE = 500;
     private static int LIGHT_SENSOR_VALUE = 400;
@@ -21,7 +21,7 @@ public class ePuckAufgabeD extends DifferentialWheels {
     private static int S_FRONT_LEFT = 0; // Sensor front left
     private static int S_FRONT_RIGHT = 1; // Sensor front right
     private static int MIN_SPEED = 0; // min. motor speed
-    private static int MAX_SPEED = 500; // max. motor speed
+    private static int MAX_SPEED = 1000; // max. motor speed
 
 
     private DistanceSensor[] sensors; // Array with all distance sensors
@@ -38,8 +38,8 @@ public class ePuckAufgabeD extends DifferentialWheels {
                 getDistanceSensor("ps0") };
         camera = new Camera("camera");
         for (int i=0; i<2; i++) {
-            sensors[i].enable(15);
-            camera.enable(15);
+            sensors[i].enable(10);
+            camera.enable(10);
         }
     }
 
@@ -59,11 +59,10 @@ public class ePuckAufgabeD extends DifferentialWheels {
             int red = 0;
 
             image = camera.getImage();
-            System.out.println(camera.getWidth());
             width = camera.getWidth();
             height = camera.getHeight();
 
-            if ( pushingBall == false ) {
+            /*if ( pushingBall == false ) {
 
                 int[] imagePixels = camera.getImage();
                 for (int i=0; i < image.length; i++) {
@@ -86,10 +85,10 @@ public class ePuckAufgabeD extends DifferentialWheels {
                     pushingBall = true;
                 }
 
-            } else {
-                System.out.println("Left: " + sensors[S_FRONT_LEFT].getValue());
-                System.out.println("Right: " + sensors[S_FRONT_RIGHT].getValue());
-                if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() <= 2000)) {
+            } else { */
+            System.out.println("Left: " + sensors[S_FRONT_LEFT].getValue());
+            System.out.println("Right: " + sensors[S_FRONT_RIGHT].getValue());
+                /*if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() <= 2000)) {
                     driveForward();
                 } else if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() >= 2000)) {
                     driveRight();
@@ -98,8 +97,22 @@ public class ePuckAufgabeD extends DifferentialWheels {
                 } else {
                     pushingBall = false;
                     stop();
-                }
+                }*/
+
+            if ((sensors[S_FRONT_LEFT].getValue() <= 2000) && (sensors[S_FRONT_RIGHT].getValue() <= 2000)) {
+                driveForward();
+
+               /*if (((sensors[S_FRONT_LEFT].getValue() + 150) < sensors[S_FRONT_RIGHT].getValue()) && ((sensors[S_FRONT_LEFT].getValue() - 150) < sensors[S_FRONT_RIGHT].getValue())) {
+                   driveForward(); */
+            }else if(sensors[S_FRONT_LEFT].getValue() < sensors[S_FRONT_RIGHT].getValue()){
+                driveRight();
+            }else if(sensors[S_FRONT_LEFT].getValue() > sensors[S_FRONT_RIGHT].getValue()) {
+                driveLeft();
+            }else{
+                stop();
             }
+
+            //}
         }
     }
 
@@ -156,7 +169,7 @@ public class ePuckAufgabeD extends DifferentialWheels {
      * @param args
      */
     public static void main(String[] args) {
-        ePuckAufgabeC controller = new ePuckAufgabeC();
+        ePuckAufgabeD controller = new ePuckAufgabeD();
         controller.run();
     }
 }
