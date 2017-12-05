@@ -10,7 +10,7 @@ public class ePuckAufgabeE  extends DifferentialWheels {
     private static int TIME_STEP = 15;
 
     private static int MAX_SENSOR_VALUE = 150;
-    private static int FOLLOW_SENSOR_VALUE = 100;
+    private static int MIN_SENSOR_VALUE = 120;
 
     private static int S_LEFT = 0; // Sensor left
     private static int S_MIDDLE_LEFT = 1;  // Sensor middle left
@@ -51,13 +51,14 @@ public class ePuckAufgabeE  extends DifferentialWheels {
                 // drive right - reached a wall
                 driveRight();
                 System.out.println("Drive Right");
-            } else if (sensors[S_LEFT].getValue() < DODGE_SENSOR_VALUE) {
+            } else if (sensors[S_LEFT].getValue() < MAX_SENSOR_VALUE
+                    && sensors[S_MIDDLE_LEFT].getValue() < MIN_SENSOR_VALUE) {
                 // drive forward if nothing is in front of the robot
                 driveLeft();
                 System.out.println("Drive Left");
             } else {
                 driveForward();
-                System.out.println("Drive Forward");
+                System.out.println("Drive");
             }
             //System.out.println("ps7: " + sensors[S_FRONT_RIGHT].getValue());
         }
