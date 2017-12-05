@@ -10,7 +10,7 @@ public class ePuckAufgabeE  extends DifferentialWheels {
     private static int TIME_STEP = 15;
 
     private static int MAX_SENSOR_VALUE = 150;
-    private static int DODGE_SENSOR_VALUE = 100;
+    private static int FOLLOW_SENSOR_VALUE = 100;
 
     private static int S_LEFT = 0; // Sensor left
     private static int S_MIDDLE_LEFT = 1;  // Sensor middle left
