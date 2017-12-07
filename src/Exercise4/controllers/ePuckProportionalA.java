@@ -11,7 +11,7 @@ public class ePuckProportionalA extends DifferentialWheels {
 
     private static int MAX_SPEED = 1000; // max. motor speed
 
-    private static double[] priorities= {1, 0, 0, 0, 0, 0, 0, 1};
+    private static double[] priorities= {1, 0.1, 0.2, 0, 0, 0.2, 0.1, 1};
     private static double speedLeft;
     private static double speedRight;
 
@@ -40,13 +40,13 @@ public class ePuckProportionalA extends DifferentialWheels {
         System.out.println("RIGHT: " + sensors[7].getValue());
         System.out.println("LEFT: " + sensors[0].getValue());
 
-        speedLeft = 10*((priorities[0] * sensors[0].getValue()) + (priorities[1] * sensors[1].getValue()) + (priorities[2] * sensors[2].getValue()) + (priorities[3] * sensors[3].getValue()));
-        speedRight = 10*((priorities[7] * sensors[7].getValue()) + (priorities[6] * sensors[6].getValue()) + (priorities[5] * sensors[5].getValue()) + (priorities[4] * sensors[4].getValue()));
+        speedLeft = ((priorities[0] * sensors[0].getValue()) + (priorities[1] * sensors[1].getValue()) + (priorities[2] * sensors[2].getValue()) + (priorities[3] * sensors[3].getValue()));
+        speedRight = ((priorities[7] * sensors[7].getValue()) + (priorities[6] * sensors[6].getValue()) + (priorities[5] * sensors[5].getValue()) + (priorities[4] * sensors[4].getValue()));
 
-        if(speedLeft >= 2000 && speedRight >= 2000){
+        /*if(speedLeft >= 2000 && speedRight >= 2000){
             speedLeft = 0;
             speedRight = 0;
-        }
+        }*/
 
         if(speedLeft > MAX_SPEED){
             speedLeft = MAX_SPEED;
