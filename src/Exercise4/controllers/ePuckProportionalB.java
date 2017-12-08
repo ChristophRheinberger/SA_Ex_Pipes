@@ -5,7 +5,7 @@ import com.cyberbotics.webots.controller.LightSensor;
 
 
 
-public class ePuckProportionalA extends DifferentialWheels {
+public class ePuckProportionalB extends DifferentialWheels {
 
     private static int TIME_STEP = 15;
 
@@ -14,11 +14,12 @@ public class ePuckProportionalA extends DifferentialWheels {
     private static double[] priorities= {1, 0.1, 0.2, 0.5, 0.5, 0.2, 0.1, 1};
     private static double speedLeft;
     private static double speedRight;
+    private boolean found = true;
 
 
     private LightSensor[] sensors; // Array with all distance sensors
 
-    public ePuckProportionalA() {
+    public ePuckProportionalB() {
         super();
 
         sensors = new LightSensor[] { getLightSensor("ls7"), getLightSensor("ls6"), getLightSensor("ls5"), getLightSensor("ls4"),
@@ -36,19 +37,18 @@ public class ePuckProportionalA extends DifferentialWheels {
     }
 
     private void drive() {
-
+        found = true;
         System.out.println("RIGHT: " + sensors[7].getValue());
         System.out.println("LEFT: " + sensors[0].getValue());
 
         speedLeft = ((priorities[0] * sensors[0].getValue()) + (priorities[1] * sensors[1].getValue()) + (priorities[2] * sensors[2].getValue()) + (priorities[3] * sensors[3].getValue())) / 4;
         speedRight = ((priorities[7] * sensors[7].getValue()) + (priorities[6] * sensors[6].getValue()) + (priorities[5] * sensors[5].getValue()) + (priorities[4] * sensors[4].getValue())) / 4;
 
-        System.out.println("RIGHT Speed: " + speedRight);
-        System.out.println("LEFT Speed: " + speedLeft);
 
         if(speedLeft >= 1000 && speedRight >= 1000){
             speedLeft = 0;
             speedRight = 0;
+            found = false;
         }
 
         if(speedLeft > MAX_SPEED){
@@ -59,11 +59,19 @@ public class ePuckProportionalA extends DifferentialWheels {
             speedRight = MAX_SPEED;
         }
 
+        if(found && sensors[0].getValue() >= 440){
+            speedLeft = 0;
+            speedRight = 0;
+        }
+
+        System.out.println("RIGHT Speed: " + speedRight);
+        System.out.println("LEFT Speed: " + speedLeft);
+
         setSpeed(speedLeft, speedRight);
     }
 
     public static void main(String[] args) {
-        ePuckProportionalA controller = new ePuckProportionalA();
+        ePuckProportionalB controller = new ePuckProportionalB();
         controller.run();
     }
 }
