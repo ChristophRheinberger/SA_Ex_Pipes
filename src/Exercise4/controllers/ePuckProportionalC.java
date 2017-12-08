@@ -12,7 +12,7 @@ public class ePuckProportionalC extends DifferentialWheels {
 
     private static int MAX_SPEED = 1000; // max. motor speed
 
-    private static double[] priorities= {1, 1};
+    private static double[] priorities= {1, 0.4, 0.1, 0.1, 0.4, 1};
     private static double speedLeft;
     private static double speedRight;
 
@@ -22,8 +22,9 @@ public class ePuckProportionalC extends DifferentialWheels {
     public ePuckProportionalC() {
         super();
 
-        sensors = new DistanceSensor[] { getDistanceSensor("ps7"), getDistanceSensor("ps0") };
-        for (int i=0; i<2; i++)
+        sensors = new DistanceSensor[] { getDistanceSensor("ps7"), getDistanceSensor("ps6"), getDistanceSensor("ps5"),
+                getDistanceSensor("ps2"), getDistanceSensor("ps1"), getDistanceSensor("ps0") };
+        for (int i=0; i<6; i++)
             sensors[i].enable(10);
     }
 
@@ -36,15 +37,33 @@ public class ePuckProportionalC extends DifferentialWheels {
     }
 
     private void drive() {
-        System.out.println("RIGHT: " + sensors[1].getValue());
+        System.out.println("RIGHT: " + sensors[5].getValue());
         System.out.println("LEFT: " + sensors[0].getValue());
 
-        speedLeft = 1000 * 1000 * (priorities[0] / sensors[0].getValue());
-        speedRight = 1000 * 1000 * (priorities[1] / sensors[1].getValue());
+        speedRight =  ((priorities[0] * sensors[0].getValue()) + (priorities[1] * sensors[1].getValue()) + (priorities[2] * sensors[2].getValue())) /3;
+        speedLeft = ((priorities[5] * sensors[5].getValue()) + (priorities[4] * sensors[4].getValue()) + (priorities[3] * sensors[3].getValue())) /3;
 
-        if ((sensors[0].getValue() < 1000) && (sensors[1].getValue() < 1000)) {
-            speedLeft = 1000;
-            speedRight = 1000;
+        /*if ((speedLeft < 500) && (speedRight <500)) {
+            speedLeft = 5 * speedLeft;
+            speedRight = 5 * speedRight;
+        }
+        */
+        if((sensors[0].getValue() < 100) && (sensors[5].getValue() < 100)){
+            speedLeft = 20 * speedLeft;
+            speedRight = 20 * speedRight;
+        }
+
+        if((sensors[0].getValue() > 100) && (sensors[5].getValue() > 100)){
+            speedLeft = 5 * speedLeft;
+            speedRight = 5 * speedRight;
+        }
+
+        if(speedLeft > MAX_SPEED){
+            speedLeft = MAX_SPEED;
+        }
+
+        if(speedRight > MAX_SPEED){
+            speedRight = MAX_SPEED;
         }
 
         System.out.println("RIGHT Speed: " + speedRight);
