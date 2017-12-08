@@ -39,8 +39,13 @@ public class ePuckProportionalC extends DifferentialWheels {
         System.out.println("RIGHT: " + sensors[1].getValue());
         System.out.println("LEFT: " + sensors[0].getValue());
 
-        speedLeft = 10000*(priorities[0] / sensors[0].getValue());
-        speedRight = 10000*(priorities[1] / sensors[1].getValue());
+        speedLeft = 1000 * 1000 * (priorities[0] / sensors[0].getValue());
+        speedRight = 1000 * 1000 * (priorities[1] / sensors[1].getValue());
+
+        if ((sensors[0].getValue() < 1000) && (sensors[1].getValue() < 1000)) {
+            speedLeft = 1000;
+            speedRight = 1000;
+        }
 
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
