@@ -64,19 +64,6 @@ public class ePuckProportionalB extends DifferentialWheels {
             found = false;
         }
 
-        if(speedLeft > MAX_SPEED){
-            speedLeft = MAX_SPEED;
-        }
-
-        if(speedRight > MAX_SPEED){
-            speedRight = MAX_SPEED;
-        }
-
-        if(found && sensorsLight[0].getValue() >= 440){
-            speedLeft = 0;
-            speedRight = 0;
-        }
-
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
 
