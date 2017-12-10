@@ -12,7 +12,7 @@ public class ePuckProportionalE extends DifferentialWheels {
 
     private static int MAX_SPEED = 1000; // max. motor speed
 
-    private static double[] priorities= {1 , 0.4, 1, 1};
+    private static double[] priorities= {1 , 1, 0.5, 1};
     private static double speedLeft;
     private static double speedRight;
 
@@ -43,14 +43,6 @@ public class ePuckProportionalE extends DifferentialWheels {
 
         speedRight = MAX_SPEED - ((priorities[0] * sensors[0].getValue()) + (priorities[3] * sensors[3].getValue()) + (priorities[1] * sensors[1].getValue()));
         speedLeft = (priorities[2] * sensors[2].getValue());
-
-        if(speedLeft > MAX_SPEED){
-            speedLeft = MAX_SPEED;
-        }
-
-        if(speedRight > MAX_SPEED){
-            speedRight = MAX_SPEED;
-        }
 
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
