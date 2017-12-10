@@ -1,10 +1,9 @@
 package Exercise4.controllers;
-
-import com.cyberbotics.webots.controller.DifferentialWheels;
+;
 import com.cyberbotics.webots.controller.DistanceSensor;
 import com.cyberbotics.webots.controller.LightSensor;
 
-public class ePuckProportionalB extends DifferentialWheels {
+public class ePuckProportionalB extends ProportionalSuperController {
 
     private static int TIME_STEP = 15;
 
@@ -14,7 +13,6 @@ public class ePuckProportionalB extends DifferentialWheels {
     private static double[] prioritiesDistance = {1, 1};
     private static double speedLeft;
     private static double speedRight;
-    private boolean found = true;
 
 
     private LightSensor[] sensorsLight; // Array with all light sensors
@@ -43,7 +41,6 @@ public class ePuckProportionalB extends DifferentialWheels {
     }
 
     private void drive() {
-        found = true;
         System.out.println("RIGHT: " + sensorsLight[7].getValue());
         System.out.println("LEFT: " + sensorsLight[0].getValue());
 
@@ -61,13 +58,12 @@ public class ePuckProportionalB extends DifferentialWheels {
         if(speedLeft >= 1000 && speedRight >= 1000){
             speedLeft = 0;
             speedRight = 0;
-            found = false;
         }
 
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
 
-        setSpeed(speedLeft, speedRight);
+        speed(speedLeft, speedRight);
     }
 
     public static void main(String[] args) {

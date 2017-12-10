@@ -5,7 +5,7 @@ import com.cyberbotics.webots.controller.LightSensor;
 
 
 
-public class ePuckProportionalA extends DifferentialWheels {
+public class ePuckProportionalA extends ProportionalSuperController {
 
     private static int TIME_STEP = 15;
 
@@ -59,7 +59,7 @@ public class ePuckProportionalA extends DifferentialWheels {
             speedRight = MAX_SPEED;
         }
 
-        setSpeed(speedLeft, speedRight);
+        speed(speedLeft, speedRight);
     }
 
     public static void main(String[] args) {

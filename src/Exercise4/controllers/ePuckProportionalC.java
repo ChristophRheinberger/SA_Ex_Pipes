@@ -1,21 +1,18 @@
 package Exercise4.controllers;
 
-import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.DistanceSensor;
-import com.cyberbotics.webots.controller.LightSensor;
 
 
 
-public class ePuckProportionalC extends DifferentialWheels {
+
+public class ePuckProportionalC extends ProportionalSuperController{
 
     private static int TIME_STEP = 15;
-
     private static int MAX_SPEED = 1000; // max. motor speed
 
     private static double[] priorities= {1, 0.6, 0.4, 0.4, 0.6, 1};
     private static double speedLeft;
     private static double speedRight;
-
 
     private DistanceSensor[] sensors; // Array with all distance sensors
 
@@ -50,7 +47,7 @@ public class ePuckProportionalC extends DifferentialWheels {
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
 
-        setSpeed(speedLeft, speedRight);
+        speed(speedLeft, speedRight);
     }
 
     public static void main(String[] args) {

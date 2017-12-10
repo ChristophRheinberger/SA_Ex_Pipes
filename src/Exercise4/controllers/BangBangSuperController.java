@@ -2,9 +2,7 @@ package Exercise4.controllers;
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
 
-/**
- * Created by Clemens on 10.12.2017.
- */
+
 public abstract class BangBangSuperController extends DifferentialWheels {
 
     private static int MIN_SPEED = 0;
@@ -14,19 +12,19 @@ public abstract class BangBangSuperController extends DifferentialWheels {
         setSpeed(speedLeft, speedRight);
     }
 
-    private void stop() {
+    public void stop() {
         setSpeed(MIN_SPEED, MIN_SPEED);
     }
 
-    private void driveRight() {
+    public void driveRight() {
         setSpeed(MAX_SPEED, MIN_SPEED);
     }
 
-    private void driveLeft() {
+    public void driveLeft() {
         setSpeed(MIN_SPEED, MAX_SPEED);
     }
 
-    private void driveForward() {
+    public void driveForward() {
         setSpeed(MAX_SPEED, MAX_SPEED);
     }
 

@@ -1,14 +1,10 @@
 package Exercise4.controllers;
 
-import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.DistanceSensor;
 
-/**
- * Created by ClemensB on 04.12.17.
- */
-public class ePuckAufgabeE  extends DifferentialWheels {
-    private static int TIME_STEP = 15;
 
+public class ePuckAufgabeE  extends BangBangSuperController{
+    private static int TIME_STEP = 15;
     private static int MAX_SENSOR_VALUE = 150;
     private static int MIN_SENSOR_VALUE = 120;
 
@@ -24,9 +20,6 @@ public class ePuckAufgabeE  extends DifferentialWheels {
 
     private DistanceSensor[] sensors; // Array with all distance sensors
 
-    /**
-     * Constructor
-     */
     public ePuckAufgabeE() {
         super();
         // get distance sensors and save them in array
@@ -37,10 +30,6 @@ public class ePuckAufgabeE  extends DifferentialWheels {
             sensors[i].enable(10);
     }
 
-    /**
-     * User defined function for initializing and running the
-     * BangBangFollowTheWall class
-     */
     public void run() {
         while (step(TIME_STEP) != -1) {
             System.out.println("Left: " + sensors[S_FRONT_LEFT].getValue());
@@ -65,34 +54,6 @@ public class ePuckAufgabeE  extends DifferentialWheels {
 
     }
 
-    /**
-     * Robot drives to the right
-     */
-    private void driveRight() {
-        setSpeed(MAX_SPEED, MIN_SPEED);
-    }
-
-    /**
-     * Robot drives to the left
-     */
-    private void driveLeft() {
-        setSpeed(MIN_SPEED, MAX_SPEED);
-    }
-
-    /**
-     * Robot drives forward
-     */
-    private void driveForward() {
-        setSpeed(MAX_SPEED, MAX_SPEED);
-    }
-
-
-    /**
-     * Main method - in this method an instance of the controller is created and
-     * the method to launch the robot is called.
-     *
-     * @param args
-     */
     public static void main(String[] args) {
         ePuckAufgabeE controller = new ePuckAufgabeE();
         controller.run();
