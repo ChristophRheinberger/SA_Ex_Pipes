@@ -1,6 +1,5 @@
 package Exercise4.controllers;
 
-import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.LightSensor;
 
 
