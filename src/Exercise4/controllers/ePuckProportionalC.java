@@ -12,7 +12,7 @@ public class ePuckProportionalC extends DifferentialWheels {
 
     private static int MAX_SPEED = 1000; // max. motor speed
 
-    private static double[] priorities= {1, 1, 1, 1, 1, 1};
+    private static double[] priorities= {1, 0.6, 0.4, 0.4, 0.6, 1};
     private static double speedLeft;
     private static double speedRight;
 
