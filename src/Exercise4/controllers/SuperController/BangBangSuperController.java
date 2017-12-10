@@ -1,4 +1,4 @@
-package Exercise4.controllers;
+package Exercise4.controllers.SuperController;
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
 

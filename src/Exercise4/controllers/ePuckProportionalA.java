@@ -1,5 +1,6 @@
 package Exercise4.controllers;
 
+import Exercise4.controllers.SuperController.ProportionalSuperController;
 import com.cyberbotics.webots.controller.LightSensor;
 
 

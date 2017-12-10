@@ -1,11 +1,12 @@
 package Exercise4.controllers;
 
+import Exercise4.controllers.SuperController.ProportionalSuperController;
 import com.cyberbotics.webots.controller.DistanceSensor;
 
 
 
 
-public class ePuckProportionalC extends ProportionalSuperController{
+public class ePuckProportionalC extends ProportionalSuperController {
 
     private static int TIME_STEP = 15;
     private static int MAX_SPEED = 1000; // max. motor speed

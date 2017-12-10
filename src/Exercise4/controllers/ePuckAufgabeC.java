@@ -1,5 +1,6 @@
 package Exercise4.controllers;
 
+import Exercise4.controllers.SuperController.BangBangSuperController;
 import com.cyberbotics.webots.controller.Camera;
 import com.cyberbotics.webots.controller.DistanceSensor;
 
