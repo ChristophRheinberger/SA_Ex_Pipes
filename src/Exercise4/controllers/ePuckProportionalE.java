@@ -6,7 +6,7 @@ import com.cyberbotics.webots.controller.DistanceSensor;
 
 
 
-public class ePuckProportionalE extends DifferentialWheels {
+public class ePuckProportionalE extends ProportionalSuperController {
 
     private static int TIME_STEP = 15;
 
