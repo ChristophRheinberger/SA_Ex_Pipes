@@ -40,31 +40,12 @@ public class ePuckProportionalC extends DifferentialWheels {
         System.out.println("RIGHT: " + sensors[5].getValue());
         System.out.println("LEFT: " + sensors[0].getValue());
 
-        speedRight =  ((priorities[0] * sensors[0].getValue()) + (priorities[1] * sensors[1].getValue()) + (priorities[2] * sensors[2].getValue())) /3;
-        speedLeft = ((priorities[5] * sensors[5].getValue()) + (priorities[4] * sensors[4].getValue()) + (priorities[3] * sensors[3].getValue())) /3;
-
-        /*if ((speedLeft < 500) && (speedRight <500)) {
-            speedLeft = 5 * speedLeft;
-            speedRight = 5 * speedRight;
-        }
-        */
-        if((sensors[0].getValue() < 100) && (sensors[5].getValue() < 100)){
-            speedLeft = 20 * speedLeft;
-            speedRight = 20 * speedRight;
-        }
-
-        if((sensors[0].getValue() > 100) && (sensors[5].getValue() > 100)){
-            speedLeft = 5 * speedLeft;
-            speedRight = 5 * speedRight;
-        }
-
-        if(speedLeft > MAX_SPEED){
-            speedLeft = MAX_SPEED;
-        }
-
-        if(speedRight > MAX_SPEED){
-            speedRight = MAX_SPEED;
-        }
+        speedLeft = MAX_SPEED - ((priorities[0] * sensors[0].getValue())
+                + (priorities[1] * sensors[1].getValue())
+                + (priorities[2] * sensors[2].getValue())) / 3;
+        speedRight = MAX_SPEED - ((priorities[5] * sensors[5].getValue())
+                + (priorities[4] * sensors[4].getValue())
+                + (priorities[3] * sensors[3].getValue())) / 3;
 
         System.out.println("RIGHT Speed: " + speedRight);
         System.out.println("LEFT Speed: " + speedLeft);
