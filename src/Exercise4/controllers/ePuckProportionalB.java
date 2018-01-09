@@ -1,6 +1,6 @@
 package Exercise4.controllers;
 
-import Exercise4.controllers.SuperController.ProportionalSuperController;
+import Exercise4.controllers.superController.ProportionalSuperController;
 import com.cyberbotics.webots.controller.DistanceSensor;
 import com.cyberbotics.webots.controller.LightSensor;
 
@@ -56,7 +56,7 @@ public class ePuckProportionalB extends ProportionalSuperController {
                     + (prioritiesLight[4] * sensorsLight[4].getValue())) / 4
                     - (prioritiesDistance[1] * sensorsDistance[1].getValue());
 
-        if(speedLeft >= 1000 && speedRight >= 1000){
+        if(speedLeft <= 10 || speedRight <= 10){
             speedLeft = 0;
             speedRight = 0;
         }

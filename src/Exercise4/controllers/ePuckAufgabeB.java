@@ -1,6 +1,6 @@
 package Exercise4.controllers;
 
-import Exercise4.controllers.SuperController.BangBangSuperController;
+import Exercise4.controllers.superController.BangBangSuperController;
 import com.cyberbotics.webots.controller.LightSensor;
 
 
@@ -33,14 +33,18 @@ public class ePuckAufgabeB extends BangBangSuperController {
                     && sensors[S_FRONT_RIGHT].getValue() < LIGHT_SENSOR_VALUE) {
                 if( lightSensorValuesInTolerance() ) {
                     driveForward();
-                } else {
-                    stop();
+                }else{
+                  stop();
                 }
-            } else {
-                stop();
-            }
             System.out.println("ls7: " + sensors[S_FRONT_LEFT].getValue());
             System.out.println("ls0: " + sensors[S_FRONT_RIGHT].getValue());
+          }else if(sensors[S_FRONT_LEFT].getValue() < 150){
+            driveLeft();
+          }else if(sensors[S_FRONT_RIGHT].getValue() < 150){
+            driveRight();
+          }else{
+            stop();
+          }
         }
 
     }
@@ -52,5 +56,10 @@ public class ePuckAufgabeB extends BangBangSuperController {
         } else {
             return false;
         }
+    }
+    
+    public static void main(String[] args) {
+        ePuckAufgabeB controller = new ePuckAufgabeB();
+        controller.run();
     }
 }

@@ -9,7 +9,6 @@ import com.cyberbotics.webots.controller.DistanceSensor;
 
 
 public class ePuckBallPusher extends BangBangSuperController {
-
     private static int TIME_STEP = 15;
     private static int LIGHT_SENSOR_VALUE = 400;
 
@@ -24,9 +23,9 @@ public class ePuckBallPusher extends BangBangSuperController {
         super(10);
 
         // get distance sensors and save them in array
-        sensors = new DistanceSensor[] { getDistanceSensor("ps7"),
-                getDistanceSensor("ps0") };
-        for (int i=0; i<2; i++) {
+        sensors = new DistanceSensor[] { getDistanceSensor("ps7"), getDistanceSensor("ps6"), getDistanceSensor("ps5"),
+                getDistanceSensor("ps2"), getDistanceSensor("ps1"), getDistanceSensor("ps0") };
+        for (int i=0; i<6; i++) {
             sensors[i].enable(15);
         }
     }
@@ -40,6 +39,7 @@ public class ePuckBallPusher extends BangBangSuperController {
         float[] speed = {0, 0};
 
         while (step(TIME_STEP) != -1) {
+            setSpeed(speed[0], speed[1]);
             speed[0] = 0;
             speed[1] = 0;
             if (nextBall.isActivateable()) {
@@ -51,7 +51,7 @@ public class ePuckBallPusher extends BangBangSuperController {
             } else {
                 System.out.println("Should not get here");
             }
-            setSpeed(speed[0], speed[1]);
+            System.out.println("Actual speed: " + speed[0] + " " + speed[1]);
         }
     }
 

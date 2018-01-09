@@ -1,10 +1,7 @@
 package Exercise4.controllers;
 
-import Exercise4.controllers.SuperController.ProportionalSuperController;
+import Exercise4.controllers.superController.ProportionalSuperController;
 import com.cyberbotics.webots.controller.DistanceSensor;
-
-
-
 
 public class ePuckProportionalE extends ProportionalSuperController {
 

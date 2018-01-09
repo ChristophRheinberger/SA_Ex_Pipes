@@ -1,7 +1,6 @@
-package Exercise4.controllers.SuperController;
+package Exercise4.controllers.superController;
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
-
 
 public abstract class ProportionalSuperController extends DifferentialWheels {
 

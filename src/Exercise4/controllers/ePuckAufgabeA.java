@@ -1,14 +1,14 @@
 package Exercise4.controllers;
 
 
-import Exercise4.controllers.SuperController.BangBangSuperController;
+import Exercise4.controllers.superController.BangBangSuperController;
 import com.cyberbotics.webots.controller.LightSensor;
 
 
 public class ePuckAufgabeA extends BangBangSuperController {
 
     private static int TIME_STEP = 15;
-    private static int LIGHT_SENSOR_VALUE = 400;
+    private static int LIGHT_SENSOR_VALUE = 200;
 
     private static int S_FRONT_LEFT = 0; // Sensor front left
     private static int S_FRONT_RIGHT = 1; // Sensor front right

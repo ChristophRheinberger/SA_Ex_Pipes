@@ -1,8 +1,7 @@
 package Exercise4.controllers;
 
-import Exercise4.controllers.SuperController.BangBangSuperController;
+import Exercise4.controllers.superController.BangBangSuperController;
 import com.cyberbotics.webots.controller.DistanceSensor;
-
 
 public class ePuckAufgabeE  extends BangBangSuperController {
     private static int TIME_STEP = 15;

@@ -31,8 +31,9 @@ public class SearchBall implements BehaviourFace {
             speed[1] = MIN_SPEED;
         } else {
             speed[0] = MIN_SPEED;
-            speed[1] = MAX_SPEED;
+            speed[1] = MAX_SPEED/3;
         }
+        System.out.println("Pushball: " + speed[0] + " " + speed[1]);
         return speed;
     }
 }
